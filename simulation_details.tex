@@ -365,12 +365,42 @@ percentages in both data sets.
     \AttributeTok{Mean =} \FunctionTok{c}\NormalTok{(}\FunctionTok{mean}\NormalTok{(y.means.ex), }\FunctionTok{mean}\NormalTok{(y.means.ex.smallB)),}
     \AttributeTok{SD =} \FunctionTok{c}\NormalTok{(}\FunctionTok{sd}\NormalTok{(y.means.ex), }\FunctionTok{sd}\NormalTok{(y.means.ex.smallB))}
 \NormalTok{  ),}
-  \FunctionTok{rbind}\NormalTok{(}\FunctionTok{quantile}\NormalTok{(y.means.ex),}
-        \FunctionTok{quantile}\NormalTok{(y.means.ex.smallB))}
+  \FunctionTok{rbind}\NormalTok{(}\FunctionTok{quantile}\NormalTok{(y.means.ex, }\AttributeTok{digits =} \DecValTok{10}\NormalTok{),}
+        \FunctionTok{quantile}\NormalTok{(y.means.ex.smallB, }\AttributeTok{digits =} \DecValTok{10}\NormalTok{))}
 \NormalTok{)}
 \NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(balance.smry,}
+             \AttributeTok{caption =} \StringTok{"Summaries for Percentage of Events in each Simulation (1st 500 Sims)"}\NormalTok{,}
+             \AttributeTok{digits =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}rrrrrrrr@{}}
+\caption{Summaries for Percentage of Events in each Simulation (1st 500
+Sims)}\tabularnewline
+\toprule
+Beta & Mean & SD & 0\% & 25\% & 50\% & 75\% & 100\% \\
+\midrule
+\endfirsthead
+\toprule
+Beta & Mean & SD & 0\% & 25\% & 50\% & 75\% & 100\% \\
+\midrule
+\endhead
+0.10 & 0.138384 & 0.02225478 & 0.072 & 0.124 & 0.136 & 0.152 & 0.216 \\
+0.05 & 0.130360 & 0.02190960 & 0.068 & 0.116 & 0.128 & 0.144 & 0.184 \\
+\bottomrule
+\end{longtable}
+
+Given the size of the simulated data, and that it is saved on UAB's
+cluster, we obtained exact values separately on the cluster and present
+those here:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{balance.smry.full }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_balance\_smry.RDS"}\NormalTok{)}
+
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(balance.smry.full,}
              \AttributeTok{caption =} \StringTok{"Summaries for Percentage of Events in each Simulation"}\NormalTok{,}
-             \AttributeTok{digits =} \DecValTok{4}\NormalTok{)}
+             \AttributeTok{digits =} \DecValTok{10}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -385,8 +415,8 @@ Beta & Mean & SD & 0\% & 25\% & 50\% & 75\% & 100\% \\
 Beta & Mean & SD & 0\% & 25\% & 50\% & 75\% & 100\% \\
 \midrule
 \endhead
-0.10 & 0.1384 & 0.0223 & 0.072 & 0.124 & 0.136 & 0.152 & 0.216 \\
-0.05 & 0.1304 & 0.0219 & 0.068 & 0.116 & 0.128 & 0.144 & 0.184 \\
+0.10 & 0.138384 & 0.02223696 & 0.072 & 0.124 & 0.136 & 0.152 & 0.216 \\
+0.05 & 0.130360 & 0.02189206 & 0.068 & 0.116 & 0.128 & 0.144 & 0.184 \\
 \bottomrule
 \end{longtable}
 
@@ -695,7 +725,7 @@ SSEN-IAR & 0.1000 & 2.0000 & 0.9489 & 0.7717 & 0.9768 & 0.8441 & 0.9643
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-10-1.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-11-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -722,7 +752,7 @@ SSEN-IAR & 0.1000 & 2.0000 & 0.9489 & 0.7717 & 0.9768 & 0.8441 & 0.9643
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-10-2.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-11-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -750,7 +780,7 @@ SSEN-IAR & 0.1000 & 2.0000 & 0.9489 & 0.7717 & 0.9768 & 0.8441 & 0.9643
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-10-3.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-11-3.pdf}
 
 \hypertarget{results-beta_j-0.05}{%
 \section{\texorpdfstring{Results
@@ -1041,7 +1071,7 @@ SSEN-IAR & 0.1000 & 2.0000 & 0.9190 & 0.6114 & 0.9640 & 0.7203 & 0.9437
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-15-1.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-16-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1068,7 +1098,7 @@ SSEN-IAR & 0.1000 & 2.0000 & 0.9190 & 0.6114 & 0.9640 & 0.7203 & 0.9437
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-15-2.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-16-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1096,7 +1126,53 @@ SSEN-IAR & 0.1000 & 2.0000 & 0.9190 & 0.6114 & 0.9640 & 0.7203 & 0.9437
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-15-3.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-16-3.pdf}
+
+\hypertarget{figure-both}{%
+\section{Figure (both)}\label{figure-both}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{all.long2 }\OtherTok{\textless{}{-}}\NormalTok{ all.long }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{beta =} \FloatTok{0.10}\NormalTok{)}
+
+\NormalTok{all.long2.smallB }\OtherTok{\textless{}{-}}\NormalTok{ all.long.smallB }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{beta =} \FloatTok{0.05}\NormalTok{)}
+
+\NormalTok{all2 }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(all.long2,}
+\NormalTok{                  all.long2.smallB)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ all2,}
+       \AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Estimate,}
+                     \AttributeTok{x =}\NormalTok{ Model, }
+                     \AttributeTok{colour =}\NormalTok{ Assessment,}
+                     \AttributeTok{shape =}\NormalTok{ Assessment}
+\NormalTok{                     )}
+\NormalTok{       ) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{beta,}
+             \AttributeTok{labeller =} \FunctionTok{label\_bquote}\NormalTok{(}\AttributeTok{cols =}\NormalTok{ beta }\SpecialCharTok{==}\NormalTok{ .(beta))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{stroke =} \FloatTok{1.5}
+             \CommentTok{\#,}
+             \CommentTok{\#position = position\_dodge(width = 0.75)}
+\NormalTok{             ) }\SpecialCharTok{+}
+  \FunctionTok{scale\_shape\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{17}\NormalTok{, }\DecValTok{18}\NormalTok{, }\DecValTok{25}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{14}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =}\NormalTok{ cbpb[}\FunctionTok{c}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{)]) }\SpecialCharTok{+}
+  \CommentTok{\# scale\_fill\_manual(values = cbp.b[c(1, 2, 4, 7, 3 )]) +}
+  \CommentTok{\# facet\_wrap(\textasciitilde{}Assessment) +}
+  \FunctionTok{scale\_x\_discrete}\NormalTok{(}\AttributeTok{name =} \ConstantTok{NULL}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.2}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+                     \AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\FloatTok{0.2}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{0.1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-18-1.pdf}
 
 \hypertarget{variation-of-metrics}{%
 \section{Variation of metrics}\label{variation-of-metrics}}
@@ -1590,7 +1666,7 @@ statistics based on the final models chosen for each case.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-19-1.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-22-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1611,7 +1687,7 @@ statistics based on the final models chosen for each case.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-19-2.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-22-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1632,7 +1708,7 @@ statistics based on the final models chosen for each case.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-19-3.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-22-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1653,7 +1729,7 @@ statistics based on the final models chosen for each case.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-19-4.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-22-4.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1674,7 +1750,7 @@ statistics based on the final models chosen for each case.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-19-5.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-22-5.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1695,7 +1771,7 @@ statistics based on the final models chosen for each case.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-19-6.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-22-6.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1716,7 +1792,7 @@ statistics based on the final models chosen for each case.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-19-7.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-22-7.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1737,7 +1813,7 @@ statistics based on the final models chosen for each case.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-19-8.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-22-8.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1758,7 +1834,7 @@ statistics based on the final models chosen for each case.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-19-9.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-22-9.pdf}
 
 \hypertarget{parameter-size-0.05}{%
 \subsubsection{Parameter size 0.05}\label{parameter-size-0.05}}
@@ -1812,7 +1888,7 @@ statistics based on the final models chosen for each case.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-21-1.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-24-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1833,7 +1909,7 @@ statistics based on the final models chosen for each case.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-21-2.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-24-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1854,7 +1930,7 @@ statistics based on the final models chosen for each case.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-21-3.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-24-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1875,7 +1951,7 @@ statistics based on the final models chosen for each case.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-21-4.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-24-4.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1896,7 +1972,7 @@ statistics based on the final models chosen for each case.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-21-5.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-24-5.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1921,7 +1997,7 @@ statistics based on the final models chosen for each case.
 ## Warning: Removed 125 rows containing non-finite values (stat_bin).
 \end{verbatim}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-21-6.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-24-6.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1942,7 +2018,7 @@ statistics based on the final models chosen for each case.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-21-7.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-24-7.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1967,7 +2043,7 @@ statistics based on the final models chosen for each case.
 ## Warning: Removed 125 rows containing non-finite values (stat_bin).
 \end{verbatim}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-21-8.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-24-8.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1988,6 +2064,6 @@ statistics based on the final models chosen for each case.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 \end{verbatim}
 
-\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-21-9.pdf}
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-24-9.pdf}
 
 \end{document}

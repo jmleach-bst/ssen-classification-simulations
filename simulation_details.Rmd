@@ -213,12 +213,22 @@ balance.smry <- cbind(
     Mean = c(mean(y.means.ex), mean(y.means.ex.smallB)),
     SD = c(sd(y.means.ex), sd(y.means.ex.smallB))
   ),
-  rbind(quantile(y.means.ex),
-        quantile(y.means.ex.smallB))
+  rbind(quantile(y.means.ex, digits = 10),
+        quantile(y.means.ex.smallB, digits = 10))
 )
 knitr::kable(balance.smry,
+             caption = "Summaries for Percentage of Events in each Simulation (1st 500 Sims)",
+             digits = 10)
+```
+
+Given the size of the simulated data, and that it is saved on UAB's cluster, we obtained exact values separately on the cluster and present those here:
+
+```{r}
+balance.smry.full <- readRDS(file = "C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results_balance_smry.RDS")
+
+knitr::kable(balance.smry.full,
              caption = "Summaries for Percentage of Events in each Simulation",
-             digits = 4)
+             digits = 10)
 ```
 
 # Analysis details
@@ -724,6 +734,45 @@ ggplot(data = all.long.smallB,
                      shape = Assessment
                      )
        ) +
+  geom_point(size = 3, stroke = 1.5
+             #,
+             #position = position_dodge(width = 0.75)
+             ) +
+  scale_shape_manual(values = c(8, 15, 17, 18, 25, 4, 14)) +
+  scale_color_manual(values = cbpb[c(8, 2, 4, 7, 6, 1, 3)]) +
+  # scale_fill_manual(values = cbp.b[c(1, 2, 4, 7, 3 )]) +
+  # facet_wrap(~Assessment) +
+  scale_x_discrete(name = NULL) +
+  scale_y_continuous(limits = c(0.2, 1),
+                     breaks = seq(0.2, 1, 0.1)) +
+  theme(plot.title = element_text(hjust = 0.5), 
+        text = element_text(size = 14),
+        legend.position = "bottom")
+```
+
+# Figure (both)
+
+```{r}
+all.long2 <- all.long %>%
+  mutate(beta = 0.10)
+
+all.long2.smallB <- all.long.smallB %>%
+  mutate(beta = 0.05)
+
+all2 <- bind_rows(all.long2,
+                  all.long2.smallB)
+```
+
+```{r}
+ggplot(data = all2,
+       mapping = aes(y = Estimate,
+                     x = Model, 
+                     colour = Assessment,
+                     shape = Assessment
+                     )
+       ) +
+  facet_wrap(~beta,
+             labeller = label_bquote(cols = beta == .(beta))) +
   geom_point(size = 3, stroke = 1.5
              #,
              #position = position_dodge(width = 0.75)
