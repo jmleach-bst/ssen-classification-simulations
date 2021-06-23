@@ -1,0 +1,1993 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={SADM Simulations},
+  pdfauthor={Justin M. Leach},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=cyan, citecolor=red}
+\DeclareMathOperator{\diag}{diag}
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+
+\title{SADM Simulations}
+\author{Justin M. Leach}
+\date{}
+
+\begin{document}
+\maketitle
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+This file contains \texttt{R} code details regarding simulations in the
+paper ``The Spike-and-Slab Elastic Net as a Classification Tool in
+Alzheimer's Disease.'' Simulations and analyses were run on UAB's
+cluseter. \texttt{R} code and scripts for running code on the cluster
+are in folders ``Rcode'' and ``scripts,'' respectively. In order to
+replicate simulations and results, you will need to edit path names and
+possibly re-write scripts from scratch if your institution does not use
+slurm workload manager (\url{https://slurm.schedmd.com/overview.html}).
+
+\hypertarget{what-simulation}{%
+\section{What simulation?}\label{what-simulation}}
+
+Note that we use the UAB cluster to run simulations. We have included
+the template for reproducing the simulations here, noting what changes
+are necessary to reproduce the simulations used in the paper. The exact
+\texttt{R} code for each scenario is found in the folder ``Rcode.'' We
+ultimately include analyses on 2,500 data sets of sample size
+\(N = 250\) using \(40 \times 40\) images as predictors to generate
+binary outcomes as described below. Note that in order to properly
+reproduce the results, it will be necessary to edit the path names to
+match your machine.
+
+\hypertarget{code-for-simulating-data}{%
+\subsection{Code for simulating data}\label{code-for-simulating-data}}
+
+We will generate the data this using \texttt{sim2Dpredictr}. Below is
+the general code structure used to generate the data. When necessary, we
+can change the \texttt{B.values} argument in \texttt{beta\_builder()} to
+assign different parameter sizes (e.g., 0.05). Similarly, unbalanced
+data was generated by changing the \texttt{mu} argument in
+\texttt{sim\_Y\_MVN\_X()}; \texttt{mu\ =\ 0} results in approximately
+balanced data sets, \texttt{mu\ =\ -1} and \texttt{mu\ =\ -1.25} were
+used to obtain unbalanced data for \(\beta_j = 0.10\) and
+\(\beta_j = 0.05\), respectively. Differing values of \texttt{mu} were
+used to obtain a balance in outcomes similar (but of course not exact)
+to that in ADNI data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(sim2Dpredictr)}
+\FunctionTok{library}\NormalTok{(reshape2)}
+
+\CommentTok{\# colorblind palattes}
+\CommentTok{\#palette using grey}
+\NormalTok{cbpg }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"\#999999"}\NormalTok{, }\StringTok{"\#E69F00"}\NormalTok{, }\StringTok{"\#56B4E9"}\NormalTok{, }\StringTok{"\#009E73"}\NormalTok{,}
+          \StringTok{"\#F0E442"}\NormalTok{, }\StringTok{"\#0072B2"}\NormalTok{, }\StringTok{"\#D55E00"}\NormalTok{, }\StringTok{"\#CC79A7"}\NormalTok{)}
+
+\CommentTok{\#palette using black}
+\NormalTok{cbpb }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"\#000000"}\NormalTok{, }\StringTok{"\#E69F00"}\NormalTok{, }\StringTok{"\#56B4E9"}\NormalTok{, }\StringTok{"\#009E73"}\NormalTok{,}
+          \StringTok{"\#F0E442"}\NormalTok{, }\StringTok{"\#0072B2"}\NormalTok{, }\StringTok{"\#D55E00"}\NormalTok{, }\StringTok{"\#CC79A7"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# simulate data for official analysis}
+
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(sim2Dpredictr)}
+
+\CommentTok{\# load data {-}\textgreater{} use array jobs}
+\NormalTok{runID }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{Sys.getenv}\NormalTok{(}\StringTok{"SLURM\_ARRAY\_TASK\_ID"}\NormalTok{))}
+
+\CommentTok{\# different seed for each job}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{31323} \SpecialCharTok{+}\NormalTok{ runID)}
+
+\CommentTok{\# How many simulations?}
+\NormalTok{M }\OtherTok{\textless{}{-}} \DecValTok{500}
+
+\CommentTok{\# How many subjects per dataset?}
+\NormalTok{N }\OtherTok{\textless{}{-}} \DecValTok{250}
+
+\CommentTok{\# Continuous or binary predictors?}
+\NormalTok{x.ms }\OtherTok{\textless{}{-}} \StringTok{"continuous"}
+\CommentTok{\# x.ms \textless{}{-} "binary"}
+
+\CommentTok{\# Continuous or binary outcomes?}
+\NormalTok{y.ms }\OtherTok{\textless{}{-}} \StringTok{"binomial"}
+\CommentTok{\# y.ms \textless{}{-} "gaussian"}
+
+\CommentTok{\# image resolution; i.e., number of predictors}
+\NormalTok{im.res }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{40}\NormalTok{, }\DecValTok{40}\NormalTok{)}
+
+\ControlFlowTok{if}\NormalTok{ (x.ms }\SpecialCharTok{==} \StringTok{"continuous"}\NormalTok{) \{}
+  \CommentTok{\# can modify these arguments if needed.}
+\NormalTok{  L }\OtherTok{=} \FunctionTok{chol\_s2Dp}\NormalTok{(}\AttributeTok{im.res =}\NormalTok{ im.res, }\AttributeTok{rho =} \FloatTok{0.90}\NormalTok{,}
+                \AttributeTok{corr.structure =} \StringTok{"ar1"}\NormalTok{,}
+                \AttributeTok{triangle =} \StringTok{"lower"}\NormalTok{)}
+\NormalTok{\}}
+
+\CommentTok{\# generate parameter vector}
+\NormalTok{betas }\OtherTok{\textless{}{-}} \FunctionTok{beta\_builder}\NormalTok{(}\AttributeTok{index.type =} \StringTok{"ellipse"}\NormalTok{,}
+                      \AttributeTok{w =} \DecValTok{8}\NormalTok{, }\AttributeTok{h =} \DecValTok{8}\NormalTok{,}
+                      \AttributeTok{row.index =} \DecValTok{15}\NormalTok{, }\AttributeTok{col.index =} \DecValTok{24}\NormalTok{,}
+                      \AttributeTok{B.values =} \FloatTok{0.1}\NormalTok{, }\AttributeTok{im.res =}\NormalTok{ im.res)}
+
+\CommentTok{\# to store data}
+\NormalTok{data.list }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{()}
+
+\CommentTok{\# run simulations}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{23432}\NormalTok{)}
+\NormalTok{t1 }\OtherTok{\textless{}{-}} \FunctionTok{proc.time}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{ (m }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{M) \{}
+  
+  \CommentTok{\# generate data}
+  \ControlFlowTok{if}\NormalTok{ (x.ms }\SpecialCharTok{==} \StringTok{"continuous"}\NormalTok{) \{}
+\NormalTok{    datm }\OtherTok{\textless{}{-}} \FunctionTok{sim\_Y\_MVN\_X}\NormalTok{(}\AttributeTok{N =}\NormalTok{ N, }\AttributeTok{dist =}\NormalTok{ y.ms,}
+                        \AttributeTok{mu =} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}
+                        \AttributeTok{L =}\NormalTok{ L}\SpecialCharTok{$}\NormalTok{L, }\AttributeTok{S =}\NormalTok{ L}\SpecialCharTok{$}\NormalTok{S,}
+                        \AttributeTok{B =}\NormalTok{ betas}\SpecialCharTok{$}\NormalTok{B)}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \CommentTok{\# from second line on will likely need adjustments}
+\NormalTok{    datm }\OtherTok{\textless{}{-}} \FunctionTok{sim\_Y\_Binary\_X}\NormalTok{(}\AttributeTok{N =}\NormalTok{ N, }\AttributeTok{dist =} \StringTok{"binomial"}\NormalTok{, }\AttributeTok{B =}\NormalTok{ betas}\SpecialCharTok{$}\NormalTok{B, }\AttributeTok{im.res =}\NormalTok{ im.res,}
+                           \AttributeTok{lambda =} \DecValTok{50}\NormalTok{, }\AttributeTok{sub.area =} \ConstantTok{TRUE}\NormalTok{,}
+                           \AttributeTok{min.sa =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.15}\NormalTok{, }\FloatTok{0.2}\NormalTok{), }\AttributeTok{max.sa =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.25}\NormalTok{, }\FloatTok{0.5}\NormalTok{),}
+                           \AttributeTok{radius.bounds.min.sa =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.02}\NormalTok{, }\FloatTok{0.04}\NormalTok{),}
+                           \AttributeTok{radius.bounds.max.sa =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.045}\NormalTok{, }\FloatTok{0.06}\NormalTok{))}
+\NormalTok{  \}}
+  
+\NormalTok{  data.list[[m]] }\OtherTok{\textless{}{-}}\NormalTok{ datm}
+  \FunctionTok{cat}\NormalTok{(}\StringTok{"Simulation "}\NormalTok{, m, }\StringTok{" has completed. }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{\}}
+\FunctionTok{proc.time}\NormalTok{() }\SpecialCharTok{{-}}\NormalTok{ t1}
+
+\CommentTok{\# \# break up into more manageable pieces; here 10 independent datasets of 500 each.}
+\CommentTok{\# D \textless{}{-} 10}
+\CommentTok{\# \# size of each data set; i.e., 1k in this case.}
+\CommentTok{\# S \textless{}{-} M/D}
+\CommentTok{\# }
+\CommentTok{\# for (d in 1:D) \{}
+\CommentTok{\#   min \textless{}{-} 1 + (S * (d {-} 1))}
+\CommentTok{\#   max \textless{}{-} S * d}
+\CommentTok{\#   saveRDS(data.list[min:max], }
+\CommentTok{\#           file = paste0("/data/user/jleach/sim\_06\_2021/simdata/simdata\_N500\_50x50\_", d, ".RDS"))}
+\CommentTok{\# \}}
+
+\FunctionTok{saveRDS}\NormalTok{(data.list,}
+        \AttributeTok{file =} \FunctionTok{paste0}\NormalTok{(}\StringTok{"/data/user/jleach/sim\_06\_2021/simdata/simdata\_N250\_40x40\_"}\NormalTok{, runID, }\StringTok{".RDS"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{example-subject-image}{%
+\subsection{Example subject image}\label{example-subject-image}}
+
+The outcomes are binary, and below we show an example of predictor
+images. You can simply change \texttt{filter(subjectID\ ==\ 1)} to any
+number between 1 and 50 to see other example images.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# helps properly display matrices as images}
+\NormalTok{rotate }\OtherTok{=} \ControlFlowTok{function}\NormalTok{(x)\{}
+    \FunctionTok{t}\NormalTok{(}\FunctionTok{apply}\NormalTok{(x, }\DecValTok{2}\NormalTok{, rev))}
+\NormalTok{\}}
+
+\CommentTok{\# width and height of images is 50 (i.e, 50x50 resolution)}
+\NormalTok{im.wh }\OtherTok{\textless{}{-}} \DecValTok{40}
+
+\NormalTok{ex.dat }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/simdata/simdata\_N250\_40x40\_2.RDS"}\NormalTok{)}
+\NormalTok{ex.dat.smallB }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/simdata/simdata\_N250\_40x40\_smallB\_2.RDS"}\NormalTok{)}
+
+\NormalTok{ex.dat}\FloatTok{.1} \OtherTok{\textless{}{-}}\NormalTok{ ex.dat[[}\DecValTok{1}\NormalTok{]]}
+\NormalTok{ex.x}\FloatTok{.1} \OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(ex.dat}\FloatTok{.1} \SpecialCharTok{\%\textgreater{}\%} 
+                              \FunctionTok{filter}\NormalTok{(subjectID }\SpecialCharTok{==} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+                              \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{Y, }\SpecialCharTok{{-}}\NormalTok{subjectID)),}
+                 \AttributeTok{nrow =}\NormalTok{ im.wh, }\AttributeTok{ncol =}\NormalTok{ im.wh, }\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{)}
+
+\CommentTok{\# subjectID = 1}
+\NormalTok{X.}\FloatTok{1.2}\NormalTok{D }\OtherTok{\textless{}{-}} \FunctionTok{rotate}\NormalTok{(}
+  \FunctionTok{matrix}\NormalTok{(}
+\NormalTok{    ex.x}\FloatTok{.1}\NormalTok{, }
+    \AttributeTok{nrow =}\NormalTok{ im.wh, }\AttributeTok{ncol =}\NormalTok{ im.wh, }
+    \AttributeTok{byrow =} \ConstantTok{TRUE}
+\NormalTok{    )}
+\NormalTok{  )}
+
+
+\NormalTok{X.}\FloatTok{1.2}\NormalTok{D.melt }\OtherTok{\textless{}{-}} \FunctionTok{melt}\NormalTok{(}
+  \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{x =} \DecValTok{1}\SpecialCharTok{:}\NormalTok{im.wh, X.}\FloatTok{1.2}\NormalTok{D), }
+  \AttributeTok{id =} \StringTok{"x"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(X.}\FloatTok{1.2}\NormalTok{D.melt) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_raster}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ x, }\AttributeTok{y =}\NormalTok{ variable, }\AttributeTok{fill =}\NormalTok{ value)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{fill =} \StringTok{"Pixel Value"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_gradient}\NormalTok{(}\AttributeTok{low =}\NormalTok{ cbpg[}\DecValTok{2}\NormalTok{], }\AttributeTok{high =}\NormalTok{ cbpg[}\DecValTok{4}\NormalTok{]) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{expand =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{))}\SpecialCharTok{+}   \CommentTok{\# get rid of extra space on x{-}axis}
+  \CommentTok{\# guides(fill = FALSE)+                  \# turn off color legend}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text =} \FunctionTok{element\_blank}\NormalTok{(),     }\CommentTok{\# turn off the axis annotations}
+        \AttributeTok{axis.ticks =} \FunctionTok{element\_blank}\NormalTok{(),}
+        \AttributeTok{axis.title =} \FunctionTok{element\_blank}\NormalTok{(),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\hypertarget{balance-in-outcome}{%
+\subsection{Balance in outcome}\label{balance-in-outcome}}
+
+We can check that the balance in the outcomes is what we expect. The
+cortical thickness data set had 14.29\% with dementia and the tau PET
+data set had 13.53\% with dementia. On average, we are close to these
+percentages in both data sets.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y.means.ex }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(ex.dat)) \{}
+\NormalTok{  y.means.ex[i] }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(ex.dat[[i]]}\SpecialCharTok{$}\NormalTok{Y)}
+\NormalTok{\}}
+
+\CommentTok{\# mean(y.means.ex)}
+\CommentTok{\# sd(y.means.ex)}
+
+\NormalTok{y.means.ex.smallB }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(ex.dat.smallB)) \{}
+\NormalTok{  y.means.ex.smallB[i] }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(ex.dat.smallB[[i]]}\SpecialCharTok{$}\NormalTok{Y)}
+\NormalTok{\}}
+
+\CommentTok{\# mean(y.means.ex.smallB)}
+\CommentTok{\# sd(y.means.ex.smallB)}
+
+\NormalTok{balance.smry }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}
+  \FunctionTok{data.frame}\NormalTok{(}
+    \AttributeTok{Beta =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.10}\NormalTok{, }\FloatTok{0.05}\NormalTok{),}
+    \AttributeTok{Mean =} \FunctionTok{c}\NormalTok{(}\FunctionTok{mean}\NormalTok{(y.means.ex), }\FunctionTok{mean}\NormalTok{(y.means.ex.smallB)),}
+    \AttributeTok{SD =} \FunctionTok{c}\NormalTok{(}\FunctionTok{sd}\NormalTok{(y.means.ex), }\FunctionTok{sd}\NormalTok{(y.means.ex.smallB))}
+\NormalTok{  ),}
+  \FunctionTok{rbind}\NormalTok{(}\FunctionTok{quantile}\NormalTok{(y.means.ex),}
+        \FunctionTok{quantile}\NormalTok{(y.means.ex.smallB))}
+\NormalTok{)}
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(balance.smry,}
+             \AttributeTok{caption =} \StringTok{"Summaries for Percentage of Events in each Simulation"}\NormalTok{,}
+             \AttributeTok{digits =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}rrrrrrrr@{}}
+\caption{Summaries for Percentage of Events in each
+Simulation}\tabularnewline
+\toprule
+Beta & Mean & SD & 0\% & 25\% & 50\% & 75\% & 100\% \\
+\midrule
+\endfirsthead
+\toprule
+Beta & Mean & SD & 0\% & 25\% & 50\% & 75\% & 100\% \\
+\midrule
+\endhead
+0.10 & 0.1384 & 0.0223 & 0.072 & 0.124 & 0.136 & 0.152 & 0.216 \\
+0.05 & 0.1304 & 0.0219 & 0.068 & 0.116 & 0.128 & 0.144 & 0.184 \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{analysis-details}{%
+\section{Analysis details}\label{analysis-details}}
+
+Of course the difficult part is analyzing the simulated data. We will
+analyze using traditional models, spike-and-slab models without spatial
+structure, and spike-and-slab models with spatial structure for the
+lasso and the elastic net with compromise parameter 0.5, i.e., halfway
+compromise between ridge and lasso.
+
+We do not reproduce the files used to run the analyses, but they are
+found in the folder ``Rcode'' and easily identified: \texttt{glmnet}
+models run with ``rcode\_glmnet\_N250\_40x40.R'', \texttt{ssnet} models
+without IAR priors with ``rcode\_ssnet\_N250\_40x40.R'', and
+\texttt{ssnet} models with IAR priors with
+``rcode\_ssnet\_iar\_N250\_40x40.R''.
+
+\hypertarget{results-beta-0.1}{%
+\section{\texorpdfstring{Results
+(\(\beta = 0.1\))}{Results (\textbackslash beta = 0.1)}}\label{results-beta-0.1}}
+
+\hypertarget{loading-results}{%
+\subsection{Loading results}\label{loading-results}}
+
+Note that while \texttt{glmnet} has only one output file, we have to
+extract and combine results from the \texttt{ssnet} models. For now, we
+extract only inference, not parameter estimates. Remember to change the
+path names!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# load data}
+
+\CommentTok{\# only take 1st 2500 analyses from glmnet models}
+\NormalTok{glmnet.results }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_glmnet\_N250\_40x40.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference}
+
+\NormalTok{ssnet.results }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{bind\_rows}\NormalTok{(}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_N250\_40x40\_500\_1.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_N250\_40x40\_500\_2.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_N250\_40x40\_500\_3.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_N250\_40x40\_500\_4.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_N250\_40x40\_500\_5.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference}
+\NormalTok{)}
+                                  
+\NormalTok{ssnet.iar.results }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{bind\_rows}\NormalTok{(}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_iar\_N250\_40x40\_250\_1.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_iar\_N250\_40x40\_250\_2.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_iar\_N250\_40x40\_250\_3.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_iar\_N250\_40x40\_250\_4.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_iar\_N250\_40x40\_250\_5.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_iar\_N250\_40x40\_250\_6.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_iar\_N250\_40x40\_250\_7.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_iar\_N250\_40x40\_250\_8.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_iar\_N250\_40x40\_250\_9.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_iar\_N250\_40x40\_250\_10.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{obtaining-optimal-models}{%
+\subsection{Obtaining optimal models}\label{obtaining-optimal-models}}
+
+We need to extract means by elastic net penalty (0.5 or 1), \(s_0\), and
+\(s_1\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{glmnet.smry}\FloatTok{.0} \OtherTok{\textless{}{-}}\NormalTok{ glmnet.results }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{model) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(alpha) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{nest}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{means =} \FunctionTok{map}\NormalTok{(}\AttributeTok{.x =}\NormalTok{ data, }\AttributeTok{.f =} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{map\_df}\NormalTok{(x, mean, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)),}
+    \AttributeTok{sds =} \FunctionTok{map}\NormalTok{(}\AttributeTok{.x =}\NormalTok{ data, }\AttributeTok{.f =} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{map\_df}\NormalTok{(x, sd, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+\NormalTok{    )}
+
+\CommentTok{\#glmnet.smry.0}
+
+\NormalTok{glmnet.smry }\OtherTok{\textless{}{-}}\NormalTok{ glmnet.smry}\FloatTok{.0} \SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{data, }\SpecialCharTok{{-}}\NormalTok{sds) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest}\NormalTok{(means)}
+
+\CommentTok{\#glmnet.smry}
+
+\NormalTok{ssnet.smry}\FloatTok{.0} \OtherTok{\textless{}{-}}\NormalTok{ ssnet.results }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{model) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(alpha, s0, s1) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{nest}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{means =} \FunctionTok{map}\NormalTok{(}\AttributeTok{.x =}\NormalTok{ data, }\AttributeTok{.f =} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{map\_df}\NormalTok{(x, mean, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)),}
+    \AttributeTok{sds =} \FunctionTok{map}\NormalTok{(}\AttributeTok{.x =}\NormalTok{ data, }\AttributeTok{.f =} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{map\_df}\NormalTok{(x, sd, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+\NormalTok{    )}
+
+\CommentTok{\#ssnet.smry.0}
+
+\NormalTok{ssnet.smry }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.smry}\FloatTok{.0} \SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{data, }\SpecialCharTok{{-}}\NormalTok{sds) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest}\NormalTok{(means)}
+
+\CommentTok{\#ssnet.smry}
+
+\NormalTok{ssnet.iar.smry}\FloatTok{.0} \OtherTok{\textless{}{-}}\NormalTok{ ssnet.iar.results }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{model) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(alpha, s0, s1) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{nest}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{means =} \FunctionTok{map}\NormalTok{(}\AttributeTok{.x =}\NormalTok{ data, }\AttributeTok{.f =} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{map\_df}\NormalTok{(x, mean, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)),}
+    \AttributeTok{sds =} \FunctionTok{map}\NormalTok{(}\AttributeTok{.x =}\NormalTok{ data, }\AttributeTok{.f =} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{map\_df}\NormalTok{(x, sd, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+\NormalTok{    )}
+
+\CommentTok{\#ssnet.iar.smry.0}
+
+\NormalTok{ssnet.iar.smry }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.iar.smry}\FloatTok{.0} \SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{data, }\SpecialCharTok{{-}}\NormalTok{sds) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest}\NormalTok{(means)}
+
+\CommentTok{\#ssnet.iar.smry}
+\end{Highlighting}
+\end{Shaded}
+
+Then we need to select the optimal model parameters for each of the 6
+modeling approaches:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{optimal.ssnet.a05 }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.smry }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ungroup}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(deviance }\SpecialCharTok{==} \FunctionTok{min}\NormalTok{(deviance))}
+
+\NormalTok{optimal.ssnet.iar.a05 }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.iar.smry }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ungroup}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(deviance }\SpecialCharTok{==} \FunctionTok{min}\NormalTok{(deviance))}
+
+\NormalTok{optimal.ssnet.a1 }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.smry }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ungroup}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(deviance }\SpecialCharTok{==} \FunctionTok{min}\NormalTok{(deviance))}
+
+\NormalTok{optimal.ssnet.iar.a1 }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.iar.smry }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ungroup}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(deviance }\SpecialCharTok{==} \FunctionTok{min}\NormalTok{(deviance))}
+
+\NormalTok{optimal.glmnet }\OtherTok{\textless{}{-}}\NormalTok{ glmnet.smry }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ungroup}\NormalTok{()}
+
+\NormalTok{results.df }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(optimal.glmnet }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \DecValTok{1}\NormalTok{),}
+\NormalTok{                    optimal.ssnet.a1,}
+\NormalTok{                    optimal.ssnet.iar.a1,}
+\NormalTok{                    optimal.glmnet }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \FloatTok{0.5}\NormalTok{),}
+\NormalTok{                    optimal.ssnet.a05,}
+\NormalTok{                    optimal.ssnet.iar.a05)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{tables}{%
+\subsection{Tables}\label{tables}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(}\AttributeTok{model =} \FunctionTok{c}\NormalTok{(}\StringTok{"Lasso"}\NormalTok{, }\StringTok{"SSL"}\NormalTok{, }\StringTok{"SSL{-}IAR"}\NormalTok{,}
+                             \StringTok{"EN"}\NormalTok{, }\StringTok{"SSEN"}\NormalTok{, }\StringTok{"SSEN{-}IAR"}\NormalTok{), }
+\NormalTok{                   results.df }\SpecialCharTok{\%\textgreater{}\%} 
+                     \FunctionTok{select}\NormalTok{(s0, s1, deviance, auc, mse, mae, misclassification)),}
+             \AttributeTok{caption =} \StringTok{"Prediction Error over 2,500 Simulated Data Sets"}\NormalTok{,}
+             \AttributeTok{digits =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrrrrrrr@{}}
+\caption{Prediction Error over 2,500 Simulated Data Sets}\tabularnewline
+\toprule
+model & s0 & s1 & deviance & auc & mse & mae & misclassification \\
+\midrule
+\endfirsthead
+\toprule
+model & s0 & s1 & deviance & auc & mse & mae & misclassification \\
+\midrule
+\endhead
+Lasso & 0.0222 & 0.0222 & 99.9108 & 0.9398 & 0.0610 & 0.1257 & 0.0858 \\
+SSL & 0.0800 & 1.0000 & 84.1390 & 0.9568 & 0.0508 & 0.1027 & 0.0702 \\
+SSL-IAR & 0.1000 & 1.0000 & 74.3328 & 0.9667 & 0.0445 & 0.0893 &
+0.0606 \\
+EN & 0.0370 & 0.0370 & 97.7755 & 0.9432 & 0.0596 & 0.1240 & 0.0827 \\
+SSEN & 0.0700 & 1.0000 & 87.1561 & 0.9541 & 0.0527 & 0.1099 & 0.0726 \\
+SSEN-IAR & 0.1000 & 2.0000 & 63.4708 & 0.9762 & 0.0376 & 0.0716 &
+0.0511 \\
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(}\AttributeTok{model =} \FunctionTok{c}\NormalTok{(}\StringTok{"Lasso"}\NormalTok{, }\StringTok{"SSL"}\NormalTok{, }\StringTok{"SSL{-}IAR"}\NormalTok{,}
+                             \StringTok{"EN"}\NormalTok{, }\StringTok{"SSEN"}\NormalTok{, }\StringTok{"SSEN{-}IAR"}\NormalTok{), }
+\NormalTok{                   results.df }\SpecialCharTok{\%\textgreater{}\%} 
+                     \FunctionTok{select}\NormalTok{(s0, s1, accuracy, sensitivity, specificity, ppv, npv, mcc, f1)),}
+             \AttributeTok{caption =} \StringTok{"Results over 2,500 Simulated Data Sets"}\NormalTok{,}
+             \AttributeTok{digits =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrrrrrrrrr@{}}
+\caption{Results over 2,500 Simulated Data Sets}\tabularnewline
+\toprule
+model & s0 & s1 & accuracy & sensitivity & specificity & ppv & npv & mcc
+& f1 \\
+\midrule
+\endfirsthead
+\toprule
+model & s0 & s1 & accuracy & sensitivity & specificity & ppv & npv & mcc
+& f1 \\
+\midrule
+\endhead
+Lasso & 0.0222 & 0.0222 & 0.9156 & 0.5203 & 0.9778 & 0.7920 & 0.9280 &
+0.5963 & 0.6224 \\
+SSL & 0.0800 & 1.0000 & 0.9298 & 0.6564 & 0.9729 & 0.7965 & 0.9470 &
+0.6831 & 0.7173 \\
+SSL-IAR & 0.1000 & 1.0000 & 0.9394 & 0.7141 & 0.9747 & 0.8205 & 0.9556 &
+0.7305 & 0.7620 \\
+EN & 0.0370 & 0.0370 & 0.9173 & 0.5246 & 0.9790 & 0.8047 & 0.9287 &
+0.6049 & 0.6289 \\
+SSEN & 0.0700 & 1.0000 & 0.9274 & 0.6222 & 0.9753 & 0.8025 & 0.9424 &
+0.6656 & 0.6972 \\
+SSEN-IAR & 0.1000 & 2.0000 & 0.9489 & 0.7717 & 0.9768 & 0.8441 & 0.9643
+& 0.7774 & 0.8050 \\
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#for LaTeX}
+\CommentTok{\# xtable::xtable(cbind(model = c("Lasso", "SSL", "SSL{-}IAR",}
+\CommentTok{\#                              "EN", "SSEN", "SSEN{-}IAR"),}
+\CommentTok{\#                    results.df \%\textgreater{}\%}
+\CommentTok{\#                      select(s0, s1, deviance, auc, mse, mae, misclassification)),}
+\CommentTok{\#                digits = 4)}
+\CommentTok{\# xtable::xtable(cbind(model = c("Lasso", "SSL", "SSL{-}IAR",}
+\CommentTok{\#                              "EN", "SSEN", "SSEN{-}IAR"),}
+\CommentTok{\#                    results.df \%\textgreater{}\%}
+\CommentTok{\#                      select(s0, s1, accuracy, sensitivity, specificity, ppv, npv, mcc, f1)),}
+\CommentTok{\#                digits = 4)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{figure}{%
+\subsection{Figure}\label{figure}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# wrangle for figures}
+\NormalTok{accuracy.wide }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}\AttributeTok{Model =} \FunctionTok{c}\NormalTok{(}\StringTok{"Lasso"}\NormalTok{, }\StringTok{"SSL"}\NormalTok{, }\StringTok{"SSL{-}IAR"}\NormalTok{,}
+                             \StringTok{"EN"}\NormalTok{, }\StringTok{"SSEN"}\NormalTok{, }\StringTok{"SSEN{-}IAR"}\NormalTok{),}
+\NormalTok{                       results.df }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(accuracy, sensitivity, specificity,}
+\NormalTok{                                             ppv, npv, mcc, f1)}
+\NormalTok{)}
+
+\CommentTok{\# number of models in total}
+\NormalTok{nm }\OtherTok{\textless{}{-}} \DecValTok{6}
+\NormalTok{all.long }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(accuracy.wide }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(Model),}
+                  \AttributeTok{Estimate =} \FunctionTok{c}\NormalTok{(accuracy.wide}\SpecialCharTok{$}\NormalTok{accuracy, }
+\NormalTok{                               accuracy.wide}\SpecialCharTok{$}\NormalTok{sensitivity,}
+\NormalTok{                               accuracy.wide}\SpecialCharTok{$}\NormalTok{specificity,}
+\NormalTok{                               accuracy.wide}\SpecialCharTok{$}\NormalTok{ppv,}
+\NormalTok{                               accuracy.wide}\SpecialCharTok{$}\NormalTok{npv,}
+\NormalTok{                               accuracy.wide}\SpecialCharTok{$}\NormalTok{mcc,}
+\NormalTok{                               accuracy.wide}\SpecialCharTok{$}\NormalTok{f1),}
+                  \AttributeTok{Assessment =} \FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{"Accuracy"}\NormalTok{, nm),}
+                                 \FunctionTok{rep}\NormalTok{(}\StringTok{"Sensitivity"}\NormalTok{, nm),}
+                                 \FunctionTok{rep}\NormalTok{(}\StringTok{"Specificity"}\NormalTok{, nm),}
+                                 \FunctionTok{rep}\NormalTok{(}\StringTok{"PPV"}\NormalTok{, nm),}
+                                 \FunctionTok{rep}\NormalTok{(}\StringTok{"NPV"}\NormalTok{, nm),}
+                                 \FunctionTok{rep}\NormalTok{(}\StringTok{"MCC"}\NormalTok{, nm),}
+                                 \FunctionTok{rep}\NormalTok{(}\StringTok{"F1"}\NormalTok{, nm)))}
+\FunctionTok{names}\NormalTok{(all.long) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Model"}\NormalTok{, }\StringTok{"Estimate"}\NormalTok{, }\StringTok{"Assessment"}\NormalTok{)}
+\NormalTok{all.long}\SpecialCharTok{$}\NormalTok{Model }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(all.long}\SpecialCharTok{$}\NormalTok{Model, }
+                         \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Lasso"}\NormalTok{, }\StringTok{"SSL"}\NormalTok{, }\StringTok{"SSL{-}IAR"}\NormalTok{,}
+                                    \StringTok{"EN"}\NormalTok{, }\StringTok{"SSEN"}\NormalTok{, }\StringTok{"SSEN{-}IAR"}\NormalTok{))}
+\NormalTok{all.long}\SpecialCharTok{$}\NormalTok{Assessment }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(all.long}\SpecialCharTok{$}\NormalTok{Assessment,}
+                              \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Accuracy"}\NormalTok{, }\StringTok{"Sensitivity"}\NormalTok{, }\StringTok{"Specificity"}\NormalTok{,}
+                                         \StringTok{"PPV"}\NormalTok{, }\StringTok{"NPV"}\NormalTok{, }\StringTok{"MCC"}\NormalTok{, }\StringTok{"F1"}\NormalTok{))}
+
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ all.long }\SpecialCharTok{\%\textgreater{}\%} 
+         \FunctionTok{filter}\NormalTok{(Assessment }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"Sensitivity"}\NormalTok{, }\StringTok{"Specificity"}\NormalTok{, }\StringTok{"PPV"}\NormalTok{, }\StringTok{"NPV"}\NormalTok{)),}
+       \AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Estimate,}
+                     \AttributeTok{x =}\NormalTok{ Model, }
+                     \AttributeTok{colour =}\NormalTok{ Assessment,}
+                     \AttributeTok{shape =}\NormalTok{ Assessment}
+\NormalTok{                     )}
+\NormalTok{       ) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{stroke =} \FloatTok{1.5}\NormalTok{,}
+             \AttributeTok{position =} \FunctionTok{position\_dodge}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.75}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_shape\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\DecValTok{15}\NormalTok{, }\DecValTok{17}\NormalTok{, }\DecValTok{18}\NormalTok{, }\DecValTok{25}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =}\NormalTok{ cbpb[}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{6}\NormalTok{)]) }\SpecialCharTok{+}
+  \CommentTok{\# scale\_fill\_manual(values = cbp.b[c(1, 2, 4, 7, 3 )]) +}
+  \CommentTok{\# facet\_wrap(\textasciitilde{}Assessment) +}
+  \FunctionTok{scale\_x\_discrete}\NormalTok{(}\AttributeTok{name =} \ConstantTok{NULL}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+                     \AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{0.05}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ all.long }\SpecialCharTok{\%\textgreater{}\%} 
+         \FunctionTok{filter}\NormalTok{(Assessment }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"Accuracy"}\NormalTok{, }\StringTok{"MCC"}\NormalTok{, }\StringTok{"F1"}\NormalTok{)),}
+       \AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Estimate,}
+                     \AttributeTok{x =}\NormalTok{ Model, }
+                     \AttributeTok{colour =}\NormalTok{ Assessment,}
+                     \AttributeTok{shape =}\NormalTok{ Assessment}
+\NormalTok{                     )}
+\NormalTok{       ) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{stroke =} \FloatTok{1.5}\NormalTok{,}
+             \AttributeTok{position =} \FunctionTok{position\_dodge}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.75}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_shape\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{14}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =}\NormalTok{ cbpb[}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{3}\NormalTok{)]) }\SpecialCharTok{+}
+  \CommentTok{\# scale\_fill\_manual(values = cbp.b[c(1, 2, 4, 7, 3 )]) +}
+  \CommentTok{\# facet\_wrap(\textasciitilde{}Assessment) +}
+  \FunctionTok{scale\_x\_discrete}\NormalTok{(}\AttributeTok{name =} \ConstantTok{NULL}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+                     \AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{0.05}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-10-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ all.long,}
+       \AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Estimate,}
+                     \AttributeTok{x =}\NormalTok{ Model, }
+                     \AttributeTok{colour =}\NormalTok{ Assessment,}
+                     \AttributeTok{shape =}\NormalTok{ Assessment}
+\NormalTok{                     )}
+\NormalTok{       ) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{stroke =} \FloatTok{1.5}
+             \CommentTok{\#,}
+             \CommentTok{\#position = position\_dodge(width = 0.75)}
+\NormalTok{             ) }\SpecialCharTok{+}
+  \FunctionTok{scale\_shape\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{17}\NormalTok{, }\DecValTok{18}\NormalTok{, }\DecValTok{25}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{14}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =}\NormalTok{ cbpb[}\FunctionTok{c}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{)]) }\SpecialCharTok{+}
+  \CommentTok{\# scale\_fill\_manual(values = cbp.b[c(1, 2, 4, 7, 3 )]) +}
+  \CommentTok{\# facet\_wrap(\textasciitilde{}Assessment) +}
+  \FunctionTok{scale\_x\_discrete}\NormalTok{(}\AttributeTok{name =} \ConstantTok{NULL}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+                     \AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{0.05}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-10-3.pdf}
+
+\hypertarget{results-beta_j-0.05}{%
+\section{\texorpdfstring{Results
+(\(\beta_j = 0.05\))}{Results (\textbackslash beta\_j = 0.05)}}\label{results-beta_j-0.05}}
+
+\hypertarget{loading-results-1}{%
+\subsection{Loading results}\label{loading-results-1}}
+
+Note that while \texttt{glmnet} has only one output file, we have to
+extract and combine results from the \texttt{ssnet} models. For now, we
+extract only inference, not parameter estimates.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# load data}
+
+\CommentTok{\# only take 1st 2500 analyses from glmnet models}
+\NormalTok{glmnet.results.smallB }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_glmnet\_N250\_40x40\_smallB.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference}
+
+\NormalTok{ssnet.results.smallB }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{bind\_rows}\NormalTok{(}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_N250\_40x40\_smallB\_500\_1.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_N250\_40x40\_smallB\_500\_2.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_N250\_40x40\_smallB\_500\_3.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_N250\_40x40\_smallB\_500\_4.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_N250\_40x40\_smallB\_500\_5.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference}
+\NormalTok{)}
+                                  
+\NormalTok{ssnet.iar.results.smallB }\OtherTok{\textless{}{-}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{bind\_rows}\NormalTok{(}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_iar\_N250\_40x40\_smallB\_250\_1.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_iar\_N250\_40x40\_smallB\_250\_2.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_iar\_N250\_40x40\_smallB\_250\_3.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_iar\_N250\_40x40\_smallB\_250\_4.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_iar\_N250\_40x40\_smallB\_250\_5.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_iar\_N250\_40x40\_smallB\_250\_6.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_iar\_N250\_40x40\_smallB\_250\_7.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_iar\_N250\_40x40\_smallB\_250\_8.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_iar\_N250\_40x40\_smallB\_250\_9.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference,}
+  \FunctionTok{readRDS}\NormalTok{(}\AttributeTok{file =} \StringTok{"C:/Users/cotto/Documents/Publications/paper3/Simulation R Code/results/results\_ssnet\_iar\_N250\_40x40\_smallB\_250\_10.RDS"}\NormalTok{)}\SpecialCharTok{$}\NormalTok{inference}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{obtaining-optimal-models-1}{%
+\subsection{Obtaining optimal models}\label{obtaining-optimal-models-1}}
+
+We need to extract means by elastic net penalty (0.5 or 1), \(s_0\), and
+\(s_1\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{glmnet.smry.smallB}\FloatTok{.0} \OtherTok{\textless{}{-}}\NormalTok{ glmnet.results.smallB }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{model) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(alpha) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{nest}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{means =} \FunctionTok{map}\NormalTok{(}\AttributeTok{.x =}\NormalTok{ data, }\AttributeTok{.f =} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{map\_df}\NormalTok{(x, mean, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)),}
+    \AttributeTok{sds =} \FunctionTok{map}\NormalTok{(}\AttributeTok{.x =}\NormalTok{ data, }\AttributeTok{.f =} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{map\_df}\NormalTok{(x, sd, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+\NormalTok{    )}
+
+\CommentTok{\#glmnet.smry.smallB.0}
+
+\NormalTok{glmnet.smry.smallB }\OtherTok{\textless{}{-}}\NormalTok{ glmnet.smry.smallB}\FloatTok{.0} \SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{data, }\SpecialCharTok{{-}}\NormalTok{sds) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest}\NormalTok{(means)}
+
+\CommentTok{\#glmnet.smry.smallB}
+
+\NormalTok{ssnet.smry.smallB}\FloatTok{.0} \OtherTok{\textless{}{-}}\NormalTok{ ssnet.results.smallB }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{model) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(alpha, s0, s1) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{nest}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{means =} \FunctionTok{map}\NormalTok{(}\AttributeTok{.x =}\NormalTok{ data, }\AttributeTok{.f =} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{map\_df}\NormalTok{(x, mean, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)),}
+    \AttributeTok{sds =} \FunctionTok{map}\NormalTok{(}\AttributeTok{.x =}\NormalTok{ data, }\AttributeTok{.f =} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{map\_df}\NormalTok{(x, sd, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+\NormalTok{    )}
+
+\CommentTok{\#ssnet.smry.smallB.0}
+
+\NormalTok{ssnet.smry.smallB }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.smry.smallB}\FloatTok{.0} \SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{data, }\SpecialCharTok{{-}}\NormalTok{sds) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest}\NormalTok{(means)}
+
+\CommentTok{\#ssnet.smry.smallB}
+
+\NormalTok{ssnet.iar.smry.smallB}\FloatTok{.0} \OtherTok{\textless{}{-}}\NormalTok{ ssnet.iar.results.smallB }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{model) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(alpha, s0, s1) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{nest}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{means =} \FunctionTok{map}\NormalTok{(}\AttributeTok{.x =}\NormalTok{ data, }\AttributeTok{.f =} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{map\_df}\NormalTok{(x, mean, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)),}
+    \AttributeTok{sds =} \FunctionTok{map}\NormalTok{(}\AttributeTok{.x =}\NormalTok{ data, }\AttributeTok{.f =} \ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{map\_df}\NormalTok{(x, sd, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))}
+\NormalTok{    )}
+
+\CommentTok{\#ssnet.iar.smry.smallB.0}
+
+\NormalTok{ssnet.iar.smry.smallB }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.iar.smry.smallB}\FloatTok{.0} \SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{data, }\SpecialCharTok{{-}}\NormalTok{sds) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest}\NormalTok{(means)}
+
+\CommentTok{\#ssnet.iar.smry.smallB}
+\end{Highlighting}
+\end{Shaded}
+
+Then we need to select the optimal model parameters for each of the 6
+modeling approaches:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{optimal.ssnet.a05.smallB }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.smry.smallB }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ungroup}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(deviance }\SpecialCharTok{==} \FunctionTok{min}\NormalTok{(deviance))}
+
+\NormalTok{optimal.ssnet.iar.a05.smallB }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.iar.smry.smallB }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ungroup}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(deviance }\SpecialCharTok{==} \FunctionTok{min}\NormalTok{(deviance))}
+
+\NormalTok{optimal.ssnet.a1.smallB }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.smry.smallB }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ungroup}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(deviance }\SpecialCharTok{==} \FunctionTok{min}\NormalTok{(deviance))}
+
+\NormalTok{optimal.ssnet.iar.a1.smallB }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.iar.smry.smallB }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ungroup}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(deviance }\SpecialCharTok{==} \FunctionTok{min}\NormalTok{(deviance))}
+
+\NormalTok{optimal.glmnet.smallB }\OtherTok{\textless{}{-}}\NormalTok{ glmnet.smry.smallB }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{ungroup}\NormalTok{()}
+
+\NormalTok{results.df.smallB }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(optimal.glmnet.smallB }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \DecValTok{1}\NormalTok{),}
+\NormalTok{                           optimal.ssnet.a1.smallB,}
+\NormalTok{                           optimal.ssnet.iar.a1.smallB,}
+\NormalTok{                           optimal.glmnet.smallB }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \FloatTok{0.5}\NormalTok{),}
+\NormalTok{                           optimal.ssnet.a05.smallB,}
+\NormalTok{                           optimal.ssnet.iar.a05.smallB)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{tables-1}{%
+\subsection{Tables}\label{tables-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(}\AttributeTok{model =} \FunctionTok{c}\NormalTok{(}\StringTok{"Lasso"}\NormalTok{, }\StringTok{"SSL"}\NormalTok{, }\StringTok{"SSL{-}IAR"}\NormalTok{,}
+                             \StringTok{"EN"}\NormalTok{, }\StringTok{"SSEN"}\NormalTok{, }\StringTok{"SSEN{-}IAR"}\NormalTok{), }
+\NormalTok{                   results.df.smallB }\SpecialCharTok{\%\textgreater{}\%} 
+                     \FunctionTok{select}\NormalTok{(s0, s1, deviance, auc, mse, mae, misclassification)),}
+             \AttributeTok{caption =} \StringTok{"Prediction Error over 2,500 Simulated Data Sets"}\NormalTok{,}
+             \AttributeTok{digits =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrrrrrrr@{}}
+\caption{Prediction Error over 2,500 Simulated Data Sets}\tabularnewline
+\toprule
+model & s0 & s1 & deviance & auc & mse & mae & misclassification \\
+\midrule
+\endfirsthead
+\toprule
+model & s0 & s1 & deviance & auc & mse & mae & misclassification \\
+\midrule
+\endhead
+Lasso & 0.0347 & 0.0347 & 142.1107 & 0.8466 & 0.0858 & 0.1720 &
+0.1156 \\
+SSL & 0.0600 & 1.0000 & 129.3288 & 0.8756 & 0.0776 & 0.1540 & 0.1049 \\
+SSL-IAR & 0.0900 & 1.0000 & 119.9155 & 0.8976 & 0.0716 & 0.1378 &
+0.0973 \\
+EN & 0.0613 & 0.0613 & 140.9080 & 0.8508 & 0.0851 & 0.1718 & 0.1152 \\
+SSEN & 0.0500 & 1.0000 & 132.6004 & 0.8678 & 0.0796 & 0.1597 & 0.1073 \\
+SSEN-IAR & 0.1000 & 2.0000 & 102.2387 & 0.9367 & 0.0595 & 0.1037 &
+0.0810 \\
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(}\AttributeTok{model =} \FunctionTok{c}\NormalTok{(}\StringTok{"Lasso"}\NormalTok{, }\StringTok{"SSL"}\NormalTok{, }\StringTok{"SSL{-}IAR"}\NormalTok{,}
+                             \StringTok{"EN"}\NormalTok{, }\StringTok{"SSEN"}\NormalTok{, }\StringTok{"SSEN{-}IAR"}\NormalTok{), }
+\NormalTok{                   results.df.smallB }\SpecialCharTok{\%\textgreater{}\%} 
+                     \FunctionTok{select}\NormalTok{(s0, s1, accuracy, sensitivity, specificity, ppv, npv, mcc, f1)),}
+             \AttributeTok{caption =} \StringTok{"Results over 2,500 Simulated Data Sets"}\NormalTok{,}
+             \AttributeTok{digits =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrrrrrrrrr@{}}
+\caption{Results over 2,500 Simulated Data Sets}\tabularnewline
+\toprule
+model & s0 & s1 & accuracy & sensitivity & specificity & ppv & npv & mcc
+& f1 \\
+\midrule
+\endfirsthead
+\toprule
+model & s0 & s1 & accuracy & sensitivity & specificity & ppv & npv & mcc
+& f1 \\
+\midrule
+\endhead
+Lasso & 0.0347 & 0.0347 & 0.8844 & 0.2119 & 0.9841 & 0.6640 & 0.8937 &
+0.3242 & 0.3072 \\
+SSL & 0.0600 & 1.0000 & 0.8951 & 0.3550 & 0.9748 & 0.6739 & 0.9108 &
+0.4341 & 0.4555 \\
+SSL-IAR & 0.0900 & 1.0000 & 0.9027 & 0.4532 & 0.9690 & 0.6848 & 0.9228 &
+0.5045 & 0.5409 \\
+EN & 0.0613 & 0.0613 & 0.8848 & 0.2066 & 0.9854 & 0.6730 & 0.8932 &
+0.3254 & 0.3022 \\
+SSEN & 0.0500 & 1.0000 & 0.8927 & 0.3140 & 0.9781 & 0.6800 & 0.9060 &
+0.4084 & 0.4153 \\
+SSEN-IAR & 0.1000 & 2.0000 & 0.9190 & 0.6114 & 0.9640 & 0.7203 & 0.9437
+& 0.6174 & 0.6594 \\
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#for LaTeX}
+\CommentTok{\# xtable::xtable(cbind(model = c("Lasso", "SSL", "SSL{-}IAR",}
+\CommentTok{\#                              "EN", "SSEN", "SSEN{-}IAR"),}
+\CommentTok{\#                    results.df.smallB \%\textgreater{}\%}
+\CommentTok{\#                      select(s0, s1, deviance, auc, mse, mae, misclassification)),}
+\CommentTok{\#                digits = 4)}
+\CommentTok{\# xtable::xtable(cbind(model = c("Lasso", "SSL", "SSL{-}IAR",}
+\CommentTok{\#                              "EN", "SSEN", "SSEN{-}IAR"),}
+\CommentTok{\#                    results.df.smallB \%\textgreater{}\%}
+\CommentTok{\#                      select(s0, s1, accuracy, sensitivity, specificity, ppv, npv, mcc, f1)),}
+\CommentTok{\#                digits = 4)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{figure-1}{%
+\subsection{Figure}\label{figure-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# wrangle for figures}
+\NormalTok{accuracy.wide.smallB }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}\AttributeTok{Model =} \FunctionTok{c}\NormalTok{(}\StringTok{"Lasso"}\NormalTok{, }\StringTok{"SSL"}\NormalTok{, }\StringTok{"SSL{-}IAR"}\NormalTok{,}
+                             \StringTok{"EN"}\NormalTok{, }\StringTok{"SSEN"}\NormalTok{, }\StringTok{"SSEN{-}IAR"}\NormalTok{),}
+\NormalTok{                       results.df.smallB }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(accuracy, sensitivity, specificity,}
+\NormalTok{                                             ppv, npv, mcc, f1)}
+\NormalTok{)}
+
+\CommentTok{\# number of models in total}
+\NormalTok{nm }\OtherTok{\textless{}{-}} \DecValTok{6}
+\NormalTok{all.long.smallB }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(accuracy.wide.smallB }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(Model),}
+                  \AttributeTok{Estimate =} \FunctionTok{c}\NormalTok{(accuracy.wide.smallB}\SpecialCharTok{$}\NormalTok{accuracy, }
+\NormalTok{                               accuracy.wide.smallB}\SpecialCharTok{$}\NormalTok{sensitivity,}
+\NormalTok{                               accuracy.wide.smallB}\SpecialCharTok{$}\NormalTok{specificity,}
+\NormalTok{                               accuracy.wide.smallB}\SpecialCharTok{$}\NormalTok{ppv,}
+\NormalTok{                               accuracy.wide.smallB}\SpecialCharTok{$}\NormalTok{npv,}
+\NormalTok{                               accuracy.wide.smallB}\SpecialCharTok{$}\NormalTok{mcc,}
+\NormalTok{                               accuracy.wide.smallB}\SpecialCharTok{$}\NormalTok{f1),}
+                  \AttributeTok{Assessment =} \FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{"Accuracy"}\NormalTok{, nm),}
+                                 \FunctionTok{rep}\NormalTok{(}\StringTok{"Sensitivity"}\NormalTok{, nm),}
+                                 \FunctionTok{rep}\NormalTok{(}\StringTok{"Specificity"}\NormalTok{, nm),}
+                                 \FunctionTok{rep}\NormalTok{(}\StringTok{"PPV"}\NormalTok{, nm),}
+                                 \FunctionTok{rep}\NormalTok{(}\StringTok{"NPV"}\NormalTok{, nm),}
+                                 \FunctionTok{rep}\NormalTok{(}\StringTok{"MCC"}\NormalTok{, nm),}
+                                 \FunctionTok{rep}\NormalTok{(}\StringTok{"F1"}\NormalTok{, nm)))}
+\FunctionTok{names}\NormalTok{(all.long.smallB) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Model"}\NormalTok{, }\StringTok{"Estimate"}\NormalTok{, }\StringTok{"Assessment"}\NormalTok{)}
+\NormalTok{all.long.smallB}\SpecialCharTok{$}\NormalTok{Model }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(all.long.smallB}\SpecialCharTok{$}\NormalTok{Model, }
+                         \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Lasso"}\NormalTok{, }\StringTok{"SSL"}\NormalTok{, }\StringTok{"SSL{-}IAR"}\NormalTok{,}
+                                    \StringTok{"EN"}\NormalTok{, }\StringTok{"SSEN"}\NormalTok{, }\StringTok{"SSEN{-}IAR"}\NormalTok{))}
+\NormalTok{all.long.smallB}\SpecialCharTok{$}\NormalTok{Assessment }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(all.long.smallB}\SpecialCharTok{$}\NormalTok{Assessment,}
+                              \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Accuracy"}\NormalTok{, }\StringTok{"Sensitivity"}\NormalTok{, }\StringTok{"Specificity"}\NormalTok{,}
+                                         \StringTok{"PPV"}\NormalTok{, }\StringTok{"NPV"}\NormalTok{, }\StringTok{"MCC"}\NormalTok{, }\StringTok{"F1"}\NormalTok{))}
+
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ all.long.smallB }\SpecialCharTok{\%\textgreater{}\%} 
+         \FunctionTok{filter}\NormalTok{(Assessment }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"Sensitivity"}\NormalTok{, }\StringTok{"Specificity"}\NormalTok{, }\StringTok{"PPV"}\NormalTok{, }\StringTok{"NPV"}\NormalTok{)),}
+       \AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Estimate,}
+                     \AttributeTok{x =}\NormalTok{ Model, }
+                     \AttributeTok{colour =}\NormalTok{ Assessment,}
+                     \AttributeTok{shape =}\NormalTok{ Assessment}
+\NormalTok{                     )}
+\NormalTok{       ) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{stroke =} \FloatTok{1.5}\NormalTok{,}
+             \AttributeTok{position =} \FunctionTok{position\_dodge}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.75}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_shape\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\DecValTok{15}\NormalTok{, }\DecValTok{17}\NormalTok{, }\DecValTok{18}\NormalTok{, }\DecValTok{25}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =}\NormalTok{ cbpb[}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{6}\NormalTok{)]) }\SpecialCharTok{+}
+  \CommentTok{\# scale\_fill\_manual(values = cbp.b[c(1, 2, 4, 7, 3 )]) +}
+  \CommentTok{\# facet\_wrap(\textasciitilde{}Assessment) +}
+  \FunctionTok{scale\_x\_discrete}\NormalTok{(}\AttributeTok{name =} \ConstantTok{NULL}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.2}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+                     \AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\FloatTok{0.2}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{0.1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-15-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ all.long.smallB }\SpecialCharTok{\%\textgreater{}\%} 
+         \FunctionTok{filter}\NormalTok{(Assessment }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"Accuracy"}\NormalTok{, }\StringTok{"MCC"}\NormalTok{, }\StringTok{"F1"}\NormalTok{)),}
+       \AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Estimate,}
+                     \AttributeTok{x =}\NormalTok{ Model, }
+                     \AttributeTok{colour =}\NormalTok{ Assessment,}
+                     \AttributeTok{shape =}\NormalTok{ Assessment}
+\NormalTok{                     )}
+\NormalTok{       ) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{stroke =} \FloatTok{1.5}\NormalTok{,}
+             \AttributeTok{position =} \FunctionTok{position\_dodge}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.75}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_shape\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{14}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =}\NormalTok{ cbpb[}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{3}\NormalTok{)]) }\SpecialCharTok{+}
+  \CommentTok{\# scale\_fill\_manual(values = cbp.b[c(1, 2, 4, 7, 3 )]) +}
+  \CommentTok{\# facet\_wrap(\textasciitilde{}Assessment) +}
+  \FunctionTok{scale\_x\_discrete}\NormalTok{(}\AttributeTok{name =} \ConstantTok{NULL}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.3}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+                     \AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\FloatTok{0.3}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{0.1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-15-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ all.long.smallB,}
+       \AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Estimate,}
+                     \AttributeTok{x =}\NormalTok{ Model, }
+                     \AttributeTok{colour =}\NormalTok{ Assessment,}
+                     \AttributeTok{shape =}\NormalTok{ Assessment}
+\NormalTok{                     )}
+\NormalTok{       ) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{stroke =} \FloatTok{1.5}
+             \CommentTok{\#,}
+             \CommentTok{\#position = position\_dodge(width = 0.75)}
+\NormalTok{             ) }\SpecialCharTok{+}
+  \FunctionTok{scale\_shape\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{17}\NormalTok{, }\DecValTok{18}\NormalTok{, }\DecValTok{25}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{14}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =}\NormalTok{ cbpb[}\FunctionTok{c}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{)]) }\SpecialCharTok{+}
+  \CommentTok{\# scale\_fill\_manual(values = cbp.b[c(1, 2, 4, 7, 3 )]) +}
+  \CommentTok{\# facet\_wrap(\textasciitilde{}Assessment) +}
+  \FunctionTok{scale\_x\_discrete}\NormalTok{(}\AttributeTok{name =} \ConstantTok{NULL}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.2}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+                     \AttributeTok{breaks =} \FunctionTok{seq}\NormalTok{(}\FloatTok{0.2}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FloatTok{0.1}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-15-3.pdf}
+
+\hypertarget{variation-of-metrics}{%
+\section{Variation of metrics}\label{variation-of-metrics}}
+
+It is good practice to look at the variability in reported metrics over
+the 2,500 simulations. We produce tables of SD's histograms for all
+metrics reported in the paper.
+
+\hypertarget{table-of-sd-for-beta_j-0.1}{%
+\subsection{\texorpdfstring{Table of SD for
+\(\beta_j = 0.1\)}{Table of SD for \textbackslash beta\_j = 0.1}}\label{table-of-sd-for-beta_j-0.1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{glmnet.sds }\OtherTok{\textless{}{-}}\NormalTok{ glmnet.smry}\FloatTok{.0} \SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{data, }\SpecialCharTok{{-}}\NormalTok{means) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest}\NormalTok{(sds) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{model =} \StringTok{"glmnet"}\NormalTok{)}
+
+\NormalTok{ssnet.sds }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.smry}\FloatTok{.0} \SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{data, }\SpecialCharTok{{-}}\NormalTok{means) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest}\NormalTok{(sds) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{model =} \StringTok{"ssnet"}\NormalTok{)}
+
+\NormalTok{ssnet.iar.sds }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.iar.smry}\FloatTok{.0} \SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{data, }\SpecialCharTok{{-}}\NormalTok{means) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest}\NormalTok{(sds) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{model =} \StringTok{"ssnet{-}iar"}\NormalTok{)}
+
+\NormalTok{sds}\FloatTok{.01} \OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(glmnet.sds,}
+\NormalTok{                ssnet.sds,}
+\NormalTok{                ssnet.iar.sds) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(model, alpha, s0, s1, auc, mse, misclassification, accuracy, sensitivity, specificity, mcc, f1)}
+
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(sds}\FloatTok{.01}\NormalTok{,}
+             \AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Model"}\NormalTok{, }\StringTok{"alpha"}\NormalTok{, }\StringTok{"s0"}\NormalTok{, }\StringTok{"s1"}\NormalTok{,}
+                           \StringTok{"AUC"}\NormalTok{, }\StringTok{"MSE"}\NormalTok{, }\StringTok{"MC"}\NormalTok{, }\StringTok{"AC"}\NormalTok{, }\StringTok{"SN"}\NormalTok{, }\StringTok{"SP"}\NormalTok{, }\StringTok{"MCC"}\NormalTok{, }\StringTok{"F1"}\NormalTok{),}
+             \AttributeTok{caption =} \StringTok{"SD for model fits over 2,500 simulations (beta = 0.10)"}\NormalTok{,}
+             \AttributeTok{digits =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrrrrrrrrrrr@{}}
+\caption{SD for model fits over 2,500 simulations (beta =
+0.10)}\tabularnewline
+\toprule
+Model & alpha & s0 & s1 & AUC & MSE & MC & AC & SN & SP & MCC & F1 \\
+\midrule
+\endfirsthead
+\toprule
+Model & alpha & s0 & s1 & AUC & MSE & MC & AC & SN & SP & MCC & F1 \\
+\midrule
+\endhead
+glmnet & 0.5 & 0.0131 & 0.0131 & 0.0211 & 0.0112 & 0.0181 & 0.0181 &
+0.1129 & 0.0102 & 0.0929 & 0.0983 \\
+glmnet & 1.0 & 0.0071 & 0.0071 & 0.0230 & 0.0117 & 0.0242 & 0.0189 &
+0.1134 & 0.0104 & 0.0972 & 0.1007 \\
+ssnet & 0.5 & 0.0100 & 1.0000 & 0.1723 & 0.0279 & 0.0298 & 0.0298 &
+0.2423 & 0.0143 & 0.0831 & 0.2765 \\
+ssnet & 1.0 & 0.0100 & 1.0000 & 0.1394 & 0.0244 & 0.0280 & 0.0280 &
+0.2177 & 0.0138 & 0.0853 & 0.2371 \\
+ssnet & 0.5 & 0.0100 & 2.0000 & 0.1945 & 0.0318 & 0.0332 & 0.0332 &
+0.2751 & 0.0158 & 0.0839 & 0.3116 \\
+ssnet & 1.0 & 0.0100 & 2.0000 & 0.1489 & 0.0256 & 0.0288 & 0.0288 &
+0.2302 & 0.0144 & 0.0815 & 0.2500 \\
+ssnet & 0.5 & 0.0200 & 1.0000 & 0.0254 & 0.0152 & 0.0246 & 0.0246 &
+0.1627 & 0.0114 & 0.1295 & 0.1682 \\
+ssnet & 1.0 & 0.0200 & 1.0000 & 0.1202 & 0.0205 & 0.0248 & 0.0248 &
+0.1849 & 0.0127 & 0.0838 & 0.1988 \\
+ssnet & 0.5 & 0.0200 & 2.0000 & 0.0357 & 0.0185 & 0.0296 & 0.0296 &
+0.2360 & 0.0144 & 0.1509 & 0.2597 \\
+ssnet & 1.0 & 0.0200 & 2.0000 & 0.1322 & 0.0222 & 0.0260 & 0.0260 &
+0.2028 & 0.0136 & 0.0905 & 0.2198 \\
+ssnet & 0.5 & 0.0300 & 1.0000 & 0.0218 & 0.0118 & 0.0191 & 0.0191 &
+0.1194 & 0.0104 & 0.0936 & 0.1084 \\
+ssnet & 1.0 & 0.0300 & 1.0000 & 0.0213 & 0.0111 & 0.0183 & 0.0183 &
+0.1100 & 0.0099 & 0.0929 & 0.0925 \\
+ssnet & 0.5 & 0.0300 & 2.0000 & 0.0215 & 0.0121 & 0.0203 & 0.0203 &
+0.1432 & 0.0114 & 0.1028 & 0.1405 \\
+ssnet & 1.0 & 0.0300 & 2.0000 & 0.0216 & 0.0113 & 0.0185 & 0.0185 &
+0.1068 & 0.0100 & 0.0905 & 0.0891 \\
+ssnet & 0.5 & 0.0400 & 1.0000 & 0.0211 & 0.0115 & 0.0185 & 0.0185 &
+0.1109 & 0.0097 & 0.0921 & 0.0933 \\
+ssnet & 1.0 & 0.0400 & 1.0000 & 0.0196 & 0.0110 & 0.0183 & 0.0183 &
+0.1058 & 0.0101 & 0.0897 & 0.0877 \\
+ssnet & 0.5 & 0.0400 & 2.0000 & 0.0210 & 0.0120 & 0.0200 & 0.0200 &
+0.1293 & 0.0110 & 0.0978 & 0.1162 \\
+ssnet & 1.0 & 0.0400 & 2.0000 & 0.0206 & 0.0112 & 0.0185 & 0.0185 &
+0.1071 & 0.0098 & 0.0901 & 0.0880 \\
+ssnet & 0.5 & 0.0500 & 1.0000 & 0.0201 & 0.0114 & 0.0184 & 0.0184 &
+0.1083 & 0.0096 & 0.0903 & 0.0908 \\
+ssnet & 1.0 & 0.0500 & 1.0000 & 0.0179 & 0.0105 & 0.0174 & 0.0174 &
+0.0966 & 0.0099 & 0.0816 & 0.0792 \\
+ssnet & 0.5 & 0.0500 & 2.0000 & 0.0201 & 0.0117 & 0.0192 & 0.0192 &
+0.1203 & 0.0105 & 0.0955 & 0.1006 \\
+ssnet & 1.0 & 0.0500 & 2.0000 & 0.0195 & 0.0110 & 0.0181 & 0.0181 &
+0.1005 & 0.0100 & 0.0856 & 0.0827 \\
+ssnet & 0.5 & 0.0600 & 1.0000 & 0.0190 & 0.0113 & 0.0182 & 0.0182 &
+0.1075 & 0.0095 & 0.0899 & 0.0892 \\
+ssnet & 1.0 & 0.0600 & 1.0000 & 0.0176 & 0.0109 & 0.0178 & 0.0178 &
+0.0957 & 0.0101 & 0.0818 & 0.0785 \\
+ssnet & 0.5 & 0.0600 & 2.0000 & 0.0197 & 0.0115 & 0.0184 & 0.0184 &
+0.1157 & 0.0103 & 0.0917 & 0.0944 \\
+ssnet & 1.0 & 0.0600 & 2.0000 & 0.0191 & 0.0110 & 0.0179 & 0.0179 &
+0.0988 & 0.0100 & 0.0843 & 0.0809 \\
+ssnet & 0.5 & 0.0700 & 1.0000 & 0.0191 & 0.0116 & 0.0185 & 0.0185 &
+0.1094 & 0.0099 & 0.0907 & 0.0902 \\
+ssnet & 1.0 & 0.0700 & 1.0000 & 0.0175 & 0.0111 & 0.0183 & 0.0183 &
+0.0972 & 0.0103 & 0.0834 & 0.0794 \\
+ssnet & 0.5 & 0.0700 & 2.0000 & 0.0200 & 0.0119 & 0.0189 & 0.0189 &
+0.1149 & 0.0104 & 0.0923 & 0.0936 \\
+ssnet & 1.0 & 0.0700 & 2.0000 & 0.0184 & 0.0113 & 0.0183 & 0.0183 &
+0.1006 & 0.0102 & 0.0859 & 0.0820 \\
+ssnet & 0.5 & 0.0800 & 1.0000 & 0.0197 & 0.0118 & 0.0188 & 0.0188 &
+0.1092 & 0.0099 & 0.0908 & 0.0902 \\
+ssnet & 1.0 & 0.0800 & 1.0000 & 0.0180 & 0.0114 & 0.0183 & 0.0183 &
+0.0955 & 0.0104 & 0.0822 & 0.0778 \\
+ssnet & 0.5 & 0.0800 & 2.0000 & 0.0199 & 0.0120 & 0.0192 & 0.0192 &
+0.1143 & 0.0106 & 0.0927 & 0.0933 \\
+ssnet & 1.0 & 0.0800 & 2.0000 & 0.0183 & 0.0116 & 0.0184 & 0.0184 &
+0.0971 & 0.0102 & 0.0833 & 0.0787 \\
+ssnet & 0.5 & 0.0900 & 1.0000 & 0.0206 & 0.0122 & 0.0197 & 0.0197 &
+0.1098 & 0.0106 & 0.0924 & 0.0908 \\
+ssnet & 1.0 & 0.0900 & 1.0000 & 0.0191 & 0.0118 & 0.0188 & 0.0188 &
+0.0999 & 0.0103 & 0.0858 & 0.0815 \\
+ssnet & 0.5 & 0.0900 & 2.0000 & 0.0203 & 0.0122 & 0.0195 & 0.0195 &
+0.1177 & 0.0107 & 0.0953 & 0.0962 \\
+ssnet & 1.0 & 0.0900 & 2.0000 & 0.0195 & 0.0121 & 0.0192 & 0.0192 &
+0.0978 & 0.0104 & 0.0847 & 0.0795 \\
+ssnet & 0.5 & 0.1000 & 1.0000 & 0.0210 & 0.0125 & 0.0199 & 0.0199 &
+0.1092 & 0.0106 & 0.0925 & 0.0905 \\
+ssnet & 1.0 & 0.1000 & 1.0000 & 0.0202 & 0.0124 & 0.0196 & 0.0196 &
+0.1037 & 0.0106 & 0.0899 & 0.0855 \\
+ssnet & 0.5 & 0.1000 & 2.0000 & 0.0208 & 0.0124 & 0.0196 & 0.0196 &
+0.1165 & 0.0109 & 0.0935 & 0.0936 \\
+ssnet & 1.0 & 0.1000 & 2.0000 & 0.0204 & 0.0125 & 0.0195 & 0.0195 &
+0.1000 & 0.0104 & 0.0866 & 0.0814 \\
+ssnet-iar & 0.5 & 0.0100 & 1.0000 & 0.0900 & 0.0158 & 0.0212 & 0.0212 &
+0.1452 & 0.0115 & 0.0824 & 0.1543 \\
+ssnet-iar & 1.0 & 0.0100 & 1.0000 & 0.1382 & 0.0243 & 0.0279 & 0.0279 &
+0.2166 & 0.0137 & 0.0854 & 0.2358 \\
+ssnet-iar & 0.5 & 0.0100 & 2.0000 & 0.1083 & 0.0175 & 0.0223 & 0.0223 &
+0.1646 & 0.0125 & 0.0814 & 0.1773 \\
+ssnet-iar & 1.0 & 0.0100 & 2.0000 & 0.1484 & 0.0255 & 0.0287 & 0.0287 &
+0.2292 & 0.0144 & 0.0814 & 0.2488 \\
+ssnet-iar & 0.5 & 0.0200 & 1.0000 & 0.0201 & 0.0113 & 0.0189 & 0.0189 &
+0.1016 & 0.0101 & 0.0867 & 0.0862 \\
+ssnet-iar & 1.0 & 0.0200 & 1.0000 & 0.0909 & 0.0170 & 0.0225 & 0.0225 &
+0.1499 & 0.0116 & 0.0838 & 0.1556 \\
+ssnet-iar & 0.5 & 0.0200 & 2.0000 & 0.0200 & 0.0113 & 0.0189 & 0.0189 &
+0.0977 & 0.0101 & 0.0838 & 0.0823 \\
+ssnet-iar & 1.0 & 0.0200 & 2.0000 & 0.1004 & 0.0177 & 0.0230 & 0.0230 &
+0.1600 & 0.0123 & 0.0823 & 0.1683 \\
+ssnet-iar & 0.5 & 0.0300 & 1.0000 & 0.0185 & 0.0104 & 0.0174 & 0.0174 &
+0.1040 & 0.0102 & 0.0870 & 0.0864 \\
+ssnet-iar & 1.0 & 0.0300 & 1.0000 & 0.0210 & 0.0111 & 0.0183 & 0.0183 &
+0.1084 & 0.0100 & 0.0913 & 0.0906 \\
+ssnet-iar & 0.5 & 0.0300 & 2.0000 & 0.0195 & 0.0107 & 0.0178 & 0.0178 &
+0.1023 & 0.0100 & 0.0875 & 0.0856 \\
+ssnet-iar & 1.0 & 0.0300 & 2.0000 & 0.0214 & 0.0112 & 0.0185 & 0.0185 &
+0.1079 & 0.0102 & 0.0910 & 0.0897 \\
+ssnet-iar & 0.5 & 0.0400 & 1.0000 & 0.0154 & 0.0097 & 0.0163 & 0.0163 &
+0.0917 & 0.0097 & 0.0758 & 0.0730 \\
+ssnet-iar & 1.0 & 0.0400 & 1.0000 & 0.0188 & 0.0105 & 0.0176 & 0.0176 &
+0.1016 & 0.0100 & 0.0854 & 0.0835 \\
+ssnet-iar & 0.5 & 0.0400 & 2.0000 & 0.0170 & 0.0100 & 0.0160 & 0.0160 &
+0.0916 & 0.0096 & 0.0766 & 0.0737 \\
+ssnet-iar & 1.0 & 0.0400 & 2.0000 & 0.0199 & 0.0110 & 0.0183 & 0.0183 &
+0.1048 & 0.0101 & 0.0883 & 0.0859 \\
+ssnet-iar & 0.5 & 0.0500 & 1.0000 & 0.0158 & 0.0105 & 0.0169 & 0.0169 &
+0.0853 & 0.0102 & 0.0760 & 0.0708 \\
+ssnet-iar & 1.0 & 0.0500 & 1.0000 & 0.0170 & 0.0101 & 0.0168 & 0.0168 &
+0.0933 & 0.0099 & 0.0793 & 0.0764 \\
+ssnet-iar & 0.5 & 0.0500 & 2.0000 & 0.0166 & 0.0107 & 0.0170 & 0.0170 &
+0.0864 & 0.0102 & 0.0757 & 0.0705 \\
+ssnet-iar & 1.0 & 0.0500 & 2.0000 & 0.0176 & 0.0105 & 0.0173 & 0.0173 &
+0.0941 & 0.0100 & 0.0803 & 0.0769 \\
+ssnet-iar & 0.5 & 0.0600 & 1.0000 & 0.0161 & 0.0113 & 0.0172 & 0.0172 &
+0.0828 & 0.0103 & 0.0760 & 0.0697 \\
+ssnet-iar & 1.0 & 0.0600 & 1.0000 & 0.0163 & 0.0104 & 0.0170 & 0.0170 &
+0.0919 & 0.0099 & 0.0787 & 0.0750 \\
+ssnet-iar & 0.5 & 0.0600 & 2.0000 & 0.0174 & 0.0114 & 0.0175 & 0.0175 &
+0.0828 & 0.0106 & 0.0764 & 0.0697 \\
+ssnet-iar & 1.0 & 0.0600 & 2.0000 & 0.0168 & 0.0105 & 0.0171 & 0.0171 &
+0.0921 & 0.0101 & 0.0792 & 0.0751 \\
+ssnet-iar & 0.5 & 0.0700 & 1.0000 & 0.0162 & 0.0118 & 0.0176 & 0.0176 &
+0.0810 & 0.0106 & 0.0753 & 0.0682 \\
+ssnet-iar & 1.0 & 0.0700 & 1.0000 & 0.0157 & 0.0103 & 0.0163 & 0.0163 &
+0.0875 & 0.0094 & 0.0740 & 0.0699 \\
+ssnet-iar & 0.5 & 0.0700 & 2.0000 & 0.0178 & 0.0123 & 0.0178 & 0.0178 &
+0.0817 & 0.0109 & 0.0777 & 0.0703 \\
+ssnet-iar & 1.0 & 0.0700 & 2.0000 & 0.0161 & 0.0102 & 0.0166 & 0.0166 &
+0.0893 & 0.0096 & 0.0758 & 0.0716 \\
+ssnet-iar & 0.5 & 0.0800 & 1.0000 & 0.0161 & 0.0118 & 0.0182 & 0.0182 &
+0.0824 & 0.0110 & 0.0783 & 0.0705 \\
+ssnet-iar & 1.0 & 0.0800 & 1.0000 & 0.0155 & 0.0103 & 0.0164 & 0.0164 &
+0.0852 & 0.0099 & 0.0724 & 0.0678 \\
+ssnet-iar & 0.5 & 0.0800 & 2.0000 & 0.0171 & 0.0126 & 0.0181 & 0.0181 &
+0.0786 & 0.0113 & 0.0773 & 0.0691 \\
+ssnet-iar & 1.0 & 0.0800 & 2.0000 & 0.0161 & 0.0106 & 0.0168 & 0.0168 &
+0.0870 & 0.0099 & 0.0751 & 0.0701 \\
+ssnet-iar & 0.5 & 0.0900 & 1.0000 & 0.0160 & 0.0120 & 0.0184 & 0.0184 &
+0.0833 & 0.0115 & 0.0787 & 0.0710 \\
+ssnet-iar & 1.0 & 0.0900 & 1.0000 & 0.0157 & 0.0109 & 0.0172 & 0.0172 &
+0.0836 & 0.0103 & 0.0743 & 0.0685 \\
+ssnet-iar & 0.5 & 0.0900 & 2.0000 & 0.0166 & 0.0128 & 0.0185 & 0.0185 &
+0.0786 & 0.0117 & 0.0786 & 0.0700 \\
+ssnet-iar & 1.0 & 0.0900 & 2.0000 & 0.0161 & 0.0107 & 0.0166 & 0.0166 &
+0.0836 & 0.0101 & 0.0733 & 0.0679 \\
+ssnet-iar & 0.5 & 0.1000 & 1.0000 & 0.0176 & 0.0130 & 0.0197 & 0.0197 &
+0.0861 & 0.0125 & 0.0832 & 0.0746 \\
+ssnet-iar & 1.0 & 0.1000 & 1.0000 & 0.0162 & 0.0112 & 0.0175 & 0.0175 &
+0.0853 & 0.0104 & 0.0774 & 0.0711 \\
+ssnet-iar & 0.5 & 0.1000 & 2.0000 & 0.0165 & 0.0130 & 0.0188 & 0.0188 &
+0.0803 & 0.0121 & 0.0792 & 0.0703 \\
+ssnet-iar & 1.0 & 0.1000 & 2.0000 & 0.0166 & 0.0112 & 0.0172 & 0.0172 &
+0.0853 & 0.0101 & 0.0766 & 0.0706 \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{table-of-sd-for-beta_j-0.05}{%
+\subsection{\texorpdfstring{Table of SD for
+\(\beta_j = 0.05\)}{Table of SD for \textbackslash beta\_j = 0.05}}\label{table-of-sd-for-beta_j-0.05}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{glmnet.sds.smallB }\OtherTok{\textless{}{-}}\NormalTok{ glmnet.smry.smallB}\FloatTok{.0} \SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{data, }\SpecialCharTok{{-}}\NormalTok{means) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest}\NormalTok{(sds) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{model =} \StringTok{"glmnet"}\NormalTok{)}
+
+\NormalTok{ssnet.sds.smallB }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.smry.smallB}\FloatTok{.0} \SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{data, }\SpecialCharTok{{-}}\NormalTok{means) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest}\NormalTok{(sds) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{model =} \StringTok{"ssnet"}\NormalTok{)}
+
+\NormalTok{ssnet.iar.sds.smallB }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.iar.smry.smallB}\FloatTok{.0} \SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{data, }\SpecialCharTok{{-}}\NormalTok{means) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest}\NormalTok{(sds) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{model =} \StringTok{"ssnet{-}iar"}\NormalTok{)}
+
+\NormalTok{sds.}\FloatTok{01.}\NormalTok{smallB }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(}
+\NormalTok{  glmnet.sds.smallB,}
+\NormalTok{  ssnet.sds.smallB,}
+\NormalTok{  ssnet.iar.sds.smallB) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}
+\NormalTok{    model, alpha, s0, s1, auc, mse, misclassification,}
+\NormalTok{    accuracy, sensitivity, specificity, mcc, f1)}
+
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(sds.}\FloatTok{01.}\NormalTok{smallB,}
+             \AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Model"}\NormalTok{, }\StringTok{"alpha"}\NormalTok{, }\StringTok{"s0"}\NormalTok{, }\StringTok{"s1"}\NormalTok{,}
+                           \StringTok{"AUC"}\NormalTok{, }\StringTok{"MSE"}\NormalTok{, }\StringTok{"MC"}\NormalTok{, }\StringTok{"AC"}\NormalTok{, }\StringTok{"SN"}\NormalTok{, }\StringTok{"SP"}\NormalTok{, }\StringTok{"MCC"}\NormalTok{, }\StringTok{"F1"}\NormalTok{),}
+             \AttributeTok{caption =} \StringTok{"SD for model fits over 2,500 simulations (0.05)"}\NormalTok{,}
+             \AttributeTok{digits =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrrrrrrrrrrr@{}}
+\caption{SD for model fits over 2,500 simulations (0.05)}\tabularnewline
+\toprule
+Model & alpha & s0 & s1 & AUC & MSE & MC & AC & SN & SP & MCC & F1 \\
+\midrule
+\endfirsthead
+\toprule
+Model & alpha & s0 & s1 & AUC & MSE & MC & AC & SN & SP & MCC & F1 \\
+\midrule
+\endhead
+glmnet & 0.5 & 0.0161 & 0.0161 & 0.0406 & 0.0131 & 0.0212 & 0.0212 &
+0.1182 & 0.0098 & 0.1328 & 0.1487 \\
+glmnet & 1.0 & 0.0087 & 0.0087 & 0.0418 & 0.0132 & 0.0216 & 0.0216 &
+0.1189 & 0.0107 & 0.1327 & 0.1465 \\
+ssnet & 0.5 & 0.0100 & 1.0000 & 0.1717 & 0.0193 & 0.0219 & 0.0219 &
+0.1808 & 0.0143 & 0.1055 & 0.2319 \\
+ssnet & 1.0 & 0.0100 & 1.0000 & 0.1121 & 0.0168 & 0.0220 & 0.0220 &
+0.1542 & 0.0129 & 0.1119 & 0.1824 \\
+ssnet & 0.5 & 0.0100 & 2.0000 & 0.1782 & 0.0206 & 0.0226 & 0.0226 &
+0.1909 & 0.0152 & 0.1001 & 0.2413 \\
+ssnet & 1.0 & 0.0100 & 2.0000 & 0.1171 & 0.0170 & 0.0221 & 0.0221 &
+0.1603 & 0.0135 & 0.1105 & 0.1892 \\
+ssnet & 0.5 & 0.0200 & 1.0000 & 0.1161 & 0.0150 & 0.0206 & 0.0206 &
+0.1537 & 0.0127 & 0.1147 & 0.1915 \\
+ssnet & 1.0 & 0.0200 & 1.0000 & 0.1262 & 0.0161 & 0.0212 & 0.0212 &
+0.1591 & 0.0130 & 0.1131 & 0.1933 \\
+ssnet & 0.5 & 0.0200 & 2.0000 & 0.1303 & 0.0166 & 0.0220 & 0.0220 &
+0.1822 & 0.0149 & 0.1094 & 0.2295 \\
+ssnet & 1.0 & 0.0200 & 2.0000 & 0.1373 & 0.0170 & 0.0214 & 0.0214 &
+0.1679 & 0.0140 & 0.1084 & 0.2043 \\
+ssnet & 0.5 & 0.0300 & 1.0000 & 0.0500 & 0.0138 & 0.0207 & 0.0207 &
+0.1508 & 0.0120 & 0.1409 & 0.1818 \\
+ssnet & 1.0 & 0.0300 & 1.0000 & 0.0922 & 0.0138 & 0.0203 & 0.0203 &
+0.1416 & 0.0119 & 0.1163 & 0.1652 \\
+ssnet & 0.5 & 0.0300 & 2.0000 & 0.0572 & 0.0141 & 0.0213 & 0.0213 &
+0.1859 & 0.0149 & 0.1471 & 0.2301 \\
+ssnet & 1.0 & 0.0300 & 2.0000 & 0.1145 & 0.0142 & 0.0202 & 0.0202 &
+0.1534 & 0.0130 & 0.1137 & 0.1823 \\
+ssnet & 0.5 & 0.0400 & 1.0000 & 0.0423 & 0.0132 & 0.0208 & 0.0208 &
+0.1366 & 0.0111 & 0.1282 & 0.1540 \\
+ssnet & 1.0 & 0.0400 & 1.0000 & 0.0434 & 0.0129 & 0.0208 & 0.0208 &
+0.1271 & 0.0108 & 0.1186 & 0.1340 \\
+ssnet & 0.5 & 0.0400 & 2.0000 & 0.0440 & 0.0133 & 0.0211 & 0.0211 &
+0.1621 & 0.0134 & 0.1351 & 0.1933 \\
+ssnet & 1.0 & 0.0400 & 2.0000 & 0.0477 & 0.0130 & 0.0210 & 0.0210 &
+0.1274 & 0.0108 & 0.1171 & 0.1330 \\
+ssnet & 0.5 & 0.0500 & 1.0000 & 0.0394 & 0.0135 & 0.0217 & 0.0217 &
+0.1361 & 0.0115 & 0.1284 & 0.1496 \\
+ssnet & 1.0 & 0.0500 & 1.0000 & 0.0361 & 0.0130 & 0.0209 & 0.0209 &
+0.1269 & 0.0108 & 0.1187 & 0.1312 \\
+ssnet & 0.5 & 0.0500 & 2.0000 & 0.0390 & 0.0134 & 0.0216 & 0.0216 &
+0.1503 & 0.0128 & 0.1395 & 0.1706 \\
+ssnet & 1.0 & 0.0500 & 2.0000 & 0.0367 & 0.0130 & 0.0212 & 0.0212 &
+0.1275 & 0.0111 & 0.1184 & 0.1305 \\
+ssnet & 0.5 & 0.0600 & 1.0000 & 0.0388 & 0.0136 & 0.0224 & 0.0224 &
+0.1380 & 0.0119 & 0.1333 & 0.1519 \\
+ssnet & 1.0 & 0.0600 & 1.0000 & 0.0357 & 0.0134 & 0.0214 & 0.0214 &
+0.1287 & 0.0107 & 0.1213 & 0.1317 \\
+ssnet & 0.5 & 0.0600 & 2.0000 & 0.0393 & 0.0137 & 0.0221 & 0.0221 &
+0.1497 & 0.0129 & 0.1390 & 0.1667 \\
+ssnet & 1.0 & 0.0600 & 2.0000 & 0.0354 & 0.0133 & 0.0217 & 0.0217 &
+0.1266 & 0.0112 & 0.1188 & 0.1285 \\
+ssnet & 0.5 & 0.0700 & 1.0000 & 0.0394 & 0.0138 & 0.0224 & 0.0224 &
+0.1365 & 0.0122 & 0.1319 & 0.1476 \\
+ssnet & 1.0 & 0.0700 & 1.0000 & 0.0370 & 0.0139 & 0.0224 & 0.0224 &
+0.1296 & 0.0111 & 0.1247 & 0.1333 \\
+ssnet & 0.5 & 0.0700 & 2.0000 & 0.0401 & 0.0137 & 0.0222 & 0.0222 &
+0.1426 & 0.0132 & 0.1329 & 0.1555 \\
+ssnet & 1.0 & 0.0700 & 2.0000 & 0.0368 & 0.0139 & 0.0227 & 0.0227 &
+0.1290 & 0.0115 & 0.1235 & 0.1320 \\
+ssnet & 0.5 & 0.0800 & 1.0000 & 0.0404 & 0.0141 & 0.0229 & 0.0229 &
+0.1343 & 0.0127 & 0.1342 & 0.1454 \\
+ssnet & 1.0 & 0.0800 & 1.0000 & 0.0384 & 0.0143 & 0.0231 & 0.0231 &
+0.1304 & 0.0113 & 0.1255 & 0.1341 \\
+ssnet & 0.5 & 0.0800 & 2.0000 & 0.0413 & 0.0139 & 0.0229 & 0.0229 &
+0.1400 & 0.0135 & 0.1354 & 0.1513 \\
+ssnet & 1.0 & 0.0800 & 2.0000 & 0.0378 & 0.0141 & 0.0230 & 0.0230 &
+0.1310 & 0.0114 & 0.1257 & 0.1339 \\
+ssnet & 0.5 & 0.0900 & 1.0000 & 0.0426 & 0.0145 & 0.0233 & 0.0233 &
+0.1313 & 0.0129 & 0.1342 & 0.1423 \\
+ssnet & 1.0 & 0.0900 & 1.0000 & 0.0380 & 0.0141 & 0.0229 & 0.0229 &
+0.1308 & 0.0115 & 0.1269 & 0.1357 \\
+ssnet & 0.5 & 0.0900 & 2.0000 & 0.0428 & 0.0143 & 0.0229 & 0.0229 &
+0.1370 & 0.0133 & 0.1364 & 0.1478 \\
+ssnet & 1.0 & 0.0900 & 2.0000 & 0.0391 & 0.0140 & 0.0227 & 0.0227 &
+0.1296 & 0.0112 & 0.1258 & 0.1340 \\
+ssnet & 0.5 & 0.1000 & 1.0000 & 0.0445 & 0.0148 & 0.0237 & 0.0237 &
+0.1294 & 0.0132 & 0.1340 & 0.1407 \\
+ssnet & 1.0 & 0.1000 & 1.0000 & 0.0399 & 0.0140 & 0.0225 & 0.0225 &
+0.1280 & 0.0113 & 0.1273 & 0.1363 \\
+ssnet & 0.5 & 0.1000 & 2.0000 & 0.0446 & 0.0147 & 0.0237 & 0.0237 &
+0.1355 & 0.0139 & 0.1369 & 0.1467 \\
+ssnet & 1.0 & 0.1000 & 2.0000 & 0.0406 & 0.0141 & 0.0226 & 0.0226 &
+0.1308 & 0.0116 & 0.1255 & 0.1375 \\
+ssnet-iar & 0.5 & 0.0100 & 1.0000 & 0.1505 & 0.0161 & 0.0199 & 0.0199 &
+0.1691 & 0.0136 & 0.1063 & 0.2136 \\
+ssnet-iar & 1.0 & 0.0100 & 1.0000 & 0.1122 & 0.0168 & 0.0220 & 0.0220 &
+0.1542 & 0.0129 & 0.1119 & 0.1824 \\
+ssnet-iar & 0.5 & 0.0100 & 2.0000 & 0.1666 & 0.0175 & 0.0204 & 0.0204 &
+0.1891 & 0.0156 & 0.1024 & 0.2364 \\
+ssnet-iar & 1.0 & 0.0100 & 2.0000 & 0.1153 & 0.0169 & 0.0220 & 0.0220 &
+0.1592 & 0.0134 & 0.1100 & 0.1877 \\
+ssnet-iar & 0.5 & 0.0200 & 1.0000 & 0.0401 & 0.0127 & 0.0204 & 0.0204 &
+0.1183 & 0.0105 & 0.1156 & 0.1285 \\
+ssnet-iar & 1.0 & 0.0200 & 1.0000 & 0.1131 & 0.0151 & 0.0206 & 0.0206 &
+0.1538 & 0.0127 & 0.1130 & 0.1842 \\
+ssnet-iar & 0.5 & 0.0200 & 2.0000 & 0.0397 & 0.0127 & 0.0208 & 0.0208 &
+0.1169 & 0.0107 & 0.1136 & 0.1254 \\
+ssnet-iar & 1.0 & 0.0200 & 2.0000 & 0.1277 & 0.0156 & 0.0206 & 0.0206 &
+0.1632 & 0.0137 & 0.1095 & 0.1961 \\
+ssnet-iar & 0.5 & 0.0300 & 1.0000 & 0.0339 & 0.0124 & 0.0200 & 0.0200 &
+0.1213 & 0.0106 & 0.1149 & 0.1250 \\
+ssnet-iar & 1.0 & 0.0300 & 1.0000 & 0.0627 & 0.0130 & 0.0204 & 0.0204 &
+0.1269 & 0.0110 & 0.1156 & 0.1408 \\
+ssnet-iar & 0.5 & 0.0300 & 2.0000 & 0.0338 & 0.0124 & 0.0200 & 0.0200 &
+0.1170 & 0.0108 & 0.1119 & 0.1207 \\
+ssnet-iar & 1.0 & 0.0300 & 2.0000 & 0.0854 & 0.0133 & 0.0205 & 0.0205 &
+0.1358 & 0.0117 & 0.1124 & 0.1543 \\
+ssnet-iar & 0.5 & 0.0400 & 1.0000 & 0.0320 & 0.0128 & 0.0207 & 0.0207 &
+0.1181 & 0.0114 & 0.1117 & 0.1166 \\
+ssnet-iar & 1.0 & 0.0400 & 1.0000 & 0.0408 & 0.0127 & 0.0206 & 0.0206 &
+0.1254 & 0.0108 & 0.1176 & 0.1310 \\
+ssnet-iar & 0.5 & 0.0400 & 2.0000 & 0.0348 & 0.0131 & 0.0212 & 0.0212 &
+0.1235 & 0.0118 & 0.1171 & 0.1227 \\
+ssnet-iar & 1.0 & 0.0400 & 2.0000 & 0.0414 & 0.0128 & 0.0206 & 0.0206 &
+0.1259 & 0.0109 & 0.1166 & 0.1301 \\
+ssnet-iar & 0.5 & 0.0500 & 1.0000 & 0.0369 & 0.0152 & 0.0231 & 0.0231 &
+0.1167 & 0.0129 & 0.1157 & 0.1139 \\
+ssnet-iar & 1.0 & 0.0500 & 1.0000 & 0.0328 & 0.0124 & 0.0206 & 0.0206 &
+0.1237 & 0.0107 & 0.1165 & 0.1263 \\
+ssnet-iar & 0.5 & 0.0500 & 2.0000 & 0.0393 & 0.0150 & 0.0233 & 0.0233 &
+0.1172 & 0.0133 & 0.1133 & 0.1124 \\
+ssnet-iar & 1.0 & 0.0500 & 2.0000 & 0.0342 & 0.0127 & 0.0205 & 0.0205 &
+0.1245 & 0.0108 & 0.1154 & 0.1250 \\
+ssnet-iar & 0.5 & 0.0600 & 1.0000 & 0.0369 & 0.0157 & 0.0236 & 0.0236 &
+0.1139 & 0.0135 & 0.1129 & 0.1086 \\
+ssnet-iar & 1.0 & 0.0600 & 1.0000 & 0.0328 & 0.0124 & 0.0201 & 0.0201 &
+0.1248 & 0.0103 & 0.1148 & 0.1241 \\
+ssnet-iar & 0.5 & 0.0600 & 2.0000 & 0.0396 & 0.0165 & 0.0241 & 0.0241 &
+0.1198 & 0.0142 & 0.1197 & 0.1152 \\
+ssnet-iar & 1.0 & 0.0600 & 2.0000 & 0.0332 & 0.0126 & 0.0210 & 0.0210 &
+0.1264 & 0.0109 & 0.1177 & 0.1258 \\
+ssnet-iar & 0.5 & 0.0700 & 1.0000 & 0.0384 & 0.0167 & 0.0247 & 0.0247 &
+0.1114 & 0.0154 & 0.1140 & 0.1063 \\
+ssnet-iar & 1.0 & 0.0700 & 1.0000 & 0.0322 & 0.0124 & 0.0199 & 0.0199 &
+0.1222 & 0.0106 & 0.1116 & 0.1196 \\
+ssnet-iar & 0.5 & 0.0700 & 2.0000 & 0.0402 & 0.0172 & 0.0248 & 0.0248 &
+0.1155 & 0.0150 & 0.1168 & 0.1093 \\
+ssnet-iar & 1.0 & 0.0700 & 2.0000 & 0.0327 & 0.0124 & 0.0202 & 0.0202 &
+0.1225 & 0.0109 & 0.1117 & 0.1189 \\
+ssnet-iar & 0.5 & 0.0800 & 1.0000 & 0.0383 & 0.0170 & 0.0247 & 0.0247 &
+0.1073 & 0.0155 & 0.1120 & 0.1030 \\
+ssnet-iar & 1.0 & 0.0800 & 1.0000 & 0.0344 & 0.0132 & 0.0211 & 0.0211 &
+0.1174 & 0.0113 & 0.1093 & 0.1129 \\
+ssnet-iar & 0.5 & 0.0800 & 2.0000 & 0.0396 & 0.0182 & 0.0254 & 0.0254 &
+0.1102 & 0.0159 & 0.1134 & 0.1042 \\
+ssnet-iar & 1.0 & 0.0800 & 2.0000 & 0.0335 & 0.0131 & 0.0210 & 0.0210 &
+0.1194 & 0.0112 & 0.1112 & 0.1154 \\
+ssnet-iar & 0.5 & 0.0900 & 1.0000 & 0.0363 & 0.0170 & 0.0241 & 0.0241 &
+0.1024 & 0.0157 & 0.1060 & 0.0977 \\
+ssnet-iar & 1.0 & 0.0900 & 1.0000 & 0.0368 & 0.0146 & 0.0230 & 0.0230 &
+0.1160 & 0.0128 & 0.1135 & 0.1125 \\
+ssnet-iar & 0.5 & 0.0900 & 2.0000 & 0.0411 & 0.0184 & 0.0252 & 0.0252 &
+0.1101 & 0.0156 & 0.1158 & 0.1055 \\
+ssnet-iar & 1.0 & 0.0900 & 2.0000 & 0.0376 & 0.0142 & 0.0220 & 0.0220 &
+0.1207 & 0.0119 & 0.1132 & 0.1149 \\
+ssnet-iar & 0.5 & 0.1000 & 1.0000 & 0.0379 & 0.0174 & 0.0251 & 0.0251 &
+0.1104 & 0.0160 & 0.1149 & 0.1061 \\
+ssnet-iar & 1.0 & 0.1000 & 1.0000 & 0.0393 & 0.0161 & 0.0239 & 0.0239 &
+0.1165 & 0.0134 & 0.1167 & 0.1133 \\
+ssnet-iar & 0.5 & 0.1000 & 2.0000 & 0.0360 & 0.0183 & 0.0250 & 0.0250 &
+0.1068 & 0.0162 & 0.1127 & 0.1023 \\
+ssnet-iar & 1.0 & 0.1000 & 2.0000 & 0.0397 & 0.0157 & 0.0236 & 0.0236 &
+0.1191 & 0.0132 & 0.1154 & 0.1133 \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{figures}{%
+\subsection{Figures}\label{figures}}
+
+There are really too many combinations of parameters to display all
+plots. We present plots of the distributions of reported model fitness
+statistics based on the final models chosen for each case.
+
+\hypertarget{parameter-size-0.1}{%
+\subsubsection{Parameter size 0.1}\label{parameter-size-0.1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{glmnet.results.a1.opt }\OtherTok{\textless{}{-}}\NormalTok{ glmnet.results }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)}
+\NormalTok{glmnet.results.a05.opt }\OtherTok{\textless{}{-}}\NormalTok{ glmnet.results }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \FloatTok{0.5}\NormalTok{)}
+
+\NormalTok{ssnet.results}\SpecialCharTok{$}\NormalTok{s0 }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(ssnet.results}\SpecialCharTok{$}\NormalTok{s0, }\AttributeTok{digits =} \DecValTok{2}\NormalTok{)}
+\NormalTok{ssnet.results.a1.opt }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.results }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, s0 }\SpecialCharTok{==} \FloatTok{0.08}\NormalTok{, s1 }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)}
+\NormalTok{ssnet.results.a05.opt }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.results }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \FloatTok{0.5}\NormalTok{, s0 }\SpecialCharTok{==} \FloatTok{0.07}\NormalTok{, s1 }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)}
+
+\NormalTok{ssnet.iar.results}\SpecialCharTok{$}\NormalTok{s0 }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(ssnet.iar.results}\SpecialCharTok{$}\NormalTok{s0, }\AttributeTok{digits =} \DecValTok{2}\NormalTok{)}
+\NormalTok{ssnet.iar.results.a1.opt }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.iar.results }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, s0 }\SpecialCharTok{==} \FloatTok{0.10}\NormalTok{, s1 }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)}
+\NormalTok{ssnet.iar.results.a05.opt }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.iar.results }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \FloatTok{0.5}\NormalTok{, s0 }\SpecialCharTok{==} \FloatTok{0.10}\NormalTok{, s1 }\SpecialCharTok{==} \DecValTok{2}\NormalTok{)}
+
+\NormalTok{results.opt }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(}
+\NormalTok{  glmnet.results.a1.opt,}
+\NormalTok{  ssnet.results.a1.opt,}
+\NormalTok{  ssnet.iar.results.a1.opt,}
+\NormalTok{  glmnet.results.a05.opt,}
+\NormalTok{  ssnet.results.a05.opt,}
+\NormalTok{  ssnet.iar.results.a05.opt}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ results.opt,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ auc)) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(alpha}\SpecialCharTok{\textasciitilde{}}\NormalTok{model) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ cbpg[}\DecValTok{8}\NormalTok{], }\AttributeTok{color =}\NormalTok{ cbpg[}\DecValTok{6}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Frequency"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"AUC"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\FunctionTok{bquote}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Distribution(s) of AUC for "}\NormalTok{, beta[j] }\SpecialCharTok{==} \FloatTok{0.1}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-19-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ results.opt,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ mse)) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(alpha}\SpecialCharTok{\textasciitilde{}}\NormalTok{model) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ cbpg[}\DecValTok{8}\NormalTok{], }\AttributeTok{color =}\NormalTok{ cbpg[}\DecValTok{6}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Frequency"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"MSE"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\FunctionTok{bquote}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Distribution(s) of MSE for "}\NormalTok{, beta[j] }\SpecialCharTok{==} \FloatTok{0.1}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-19-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ results.opt,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ accuracy)) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(alpha}\SpecialCharTok{\textasciitilde{}}\NormalTok{model) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ cbpg[}\DecValTok{8}\NormalTok{], }\AttributeTok{color =}\NormalTok{ cbpg[}\DecValTok{6}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Frequency"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Accuracy"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\FunctionTok{bquote}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Distribution(s) of Accuracy for "}\NormalTok{, beta[j] }\SpecialCharTok{==} \FloatTok{0.1}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-19-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ results.opt,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ sensitivity)) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(alpha}\SpecialCharTok{\textasciitilde{}}\NormalTok{model) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ cbpg[}\DecValTok{8}\NormalTok{], }\AttributeTok{color =}\NormalTok{ cbpg[}\DecValTok{6}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Frequency"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Sensitivity"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\FunctionTok{bquote}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Distribution(s) of Sensitivity for "}\NormalTok{, beta[j] }\SpecialCharTok{==} \FloatTok{0.1}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-19-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ results.opt,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ specificity)) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(alpha}\SpecialCharTok{\textasciitilde{}}\NormalTok{model) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ cbpg[}\DecValTok{8}\NormalTok{], }\AttributeTok{color =}\NormalTok{ cbpg[}\DecValTok{6}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Frequency"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Specificity"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\FunctionTok{bquote}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Distribution(s) of Specificity for "}\NormalTok{, beta[j] }\SpecialCharTok{==} \FloatTok{0.1}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-19-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ results.opt,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ ppv)) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(alpha}\SpecialCharTok{\textasciitilde{}}\NormalTok{model) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ cbpg[}\DecValTok{8}\NormalTok{], }\AttributeTok{color =}\NormalTok{ cbpg[}\DecValTok{6}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Frequency"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"PPV"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\FunctionTok{bquote}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Distribution(s) of PPV for "}\NormalTok{, beta[j] }\SpecialCharTok{==} \FloatTok{0.1}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-19-6.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ results.opt,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ npv)) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(alpha}\SpecialCharTok{\textasciitilde{}}\NormalTok{model) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ cbpg[}\DecValTok{8}\NormalTok{], }\AttributeTok{color =}\NormalTok{ cbpg[}\DecValTok{6}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Frequency"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"NPV"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\FunctionTok{bquote}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Distribution(s) of NPV for "}\NormalTok{, beta[j] }\SpecialCharTok{==} \FloatTok{0.1}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-19-7.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ results.opt,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ mcc)) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(alpha}\SpecialCharTok{\textasciitilde{}}\NormalTok{model) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ cbpg[}\DecValTok{8}\NormalTok{], }\AttributeTok{color =}\NormalTok{ cbpg[}\DecValTok{6}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Frequency"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"MCC"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\FunctionTok{bquote}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Distribution(s) of MCC for "}\NormalTok{, beta[j] }\SpecialCharTok{==} \FloatTok{0.1}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-19-8.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ results.opt,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ f1)) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(alpha}\SpecialCharTok{\textasciitilde{}}\NormalTok{model) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ cbpg[}\DecValTok{8}\NormalTok{], }\AttributeTok{color =}\NormalTok{ cbpg[}\DecValTok{6}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Frequency"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"F1"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\FunctionTok{bquote}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Distribution(s) of F1 for "}\NormalTok{, beta[j] }\SpecialCharTok{==} \FloatTok{0.1}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-19-9.pdf}
+
+\hypertarget{parameter-size-0.05}{%
+\subsubsection{Parameter size 0.05}\label{parameter-size-0.05}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{glmnet.results.smallB.a1.opt }\OtherTok{\textless{}{-}}\NormalTok{ glmnet.results.smallB }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)}
+\NormalTok{glmnet.results.smallB.a05.opt }\OtherTok{\textless{}{-}}\NormalTok{ glmnet.results.smallB }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \FloatTok{0.5}\NormalTok{)}
+
+\NormalTok{ssnet.results.smallB}\SpecialCharTok{$}\NormalTok{s0 }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(ssnet.results.smallB}\SpecialCharTok{$}\NormalTok{s0, }\AttributeTok{digits =} \DecValTok{2}\NormalTok{)}
+\NormalTok{ssnet.results.smallB.a1.opt }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.results.smallB }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, s0 }\SpecialCharTok{==} \FloatTok{0.06}\NormalTok{, s1 }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)}
+\NormalTok{ssnet.results.smallB.a05.opt }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.results.smallB }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \FloatTok{0.5}\NormalTok{, s0 }\SpecialCharTok{==} \FloatTok{0.09}\NormalTok{, s1 }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)}
+
+\NormalTok{ssnet.iar.results.smallB}\SpecialCharTok{$}\NormalTok{s0 }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(ssnet.iar.results.smallB}\SpecialCharTok{$}\NormalTok{s0, }\AttributeTok{digits =} \DecValTok{2}\NormalTok{)}
+\NormalTok{ssnet.iar.results.smallB.a1.opt }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.iar.results.smallB }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, s0 }\SpecialCharTok{==} \FloatTok{0.05}\NormalTok{, s1 }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)}
+\NormalTok{ssnet.iar.results.smallB.a05.opt }\OtherTok{\textless{}{-}}\NormalTok{ ssnet.iar.results.smallB }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(alpha }\SpecialCharTok{==} \FloatTok{0.5}\NormalTok{, s0 }\SpecialCharTok{==} \FloatTok{0.10}\NormalTok{, s1 }\SpecialCharTok{==} \DecValTok{2}\NormalTok{)}
+
+\NormalTok{results.smallB.opt }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(}
+\NormalTok{  glmnet.results.smallB.a1.opt,}
+\NormalTok{  ssnet.results.smallB.a1.opt,}
+\NormalTok{  ssnet.iar.results.smallB.a1.opt,}
+\NormalTok{  glmnet.results.smallB.a05.opt,}
+\NormalTok{  ssnet.results.smallB.a05.opt,}
+\NormalTok{  ssnet.iar.results.smallB.a05.opt}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ results.smallB.opt,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ auc)) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(alpha}\SpecialCharTok{\textasciitilde{}}\NormalTok{model) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ cbpg[}\DecValTok{8}\NormalTok{], }\AttributeTok{color =}\NormalTok{ cbpg[}\DecValTok{6}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Frequency"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"AUC"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\FunctionTok{bquote}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Distribution(s) of AUC for "}\NormalTok{, beta[j] }\SpecialCharTok{==} \FloatTok{0.05}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-21-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ results.smallB.opt,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ mse)) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(alpha}\SpecialCharTok{\textasciitilde{}}\NormalTok{model) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ cbpg[}\DecValTok{8}\NormalTok{], }\AttributeTok{color =}\NormalTok{ cbpg[}\DecValTok{6}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Frequency"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"MSE"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\FunctionTok{bquote}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Distribution(s) of MSE for "}\NormalTok{, beta[j] }\SpecialCharTok{==} \FloatTok{0.05}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-21-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ results.smallB.opt,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ accuracy)) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(alpha}\SpecialCharTok{\textasciitilde{}}\NormalTok{model) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ cbpg[}\DecValTok{8}\NormalTok{], }\AttributeTok{color =}\NormalTok{ cbpg[}\DecValTok{6}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Frequency"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Accuracy"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\FunctionTok{bquote}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Distribution(s) of Accuracy for "}\NormalTok{, beta[j] }\SpecialCharTok{==} \FloatTok{0.05}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-21-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ results.smallB.opt,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ sensitivity)) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(alpha}\SpecialCharTok{\textasciitilde{}}\NormalTok{model) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ cbpg[}\DecValTok{8}\NormalTok{], }\AttributeTok{color =}\NormalTok{ cbpg[}\DecValTok{6}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Frequency"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Sensitivity"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\FunctionTok{bquote}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Distribution(s) of Sensitivity for "}\NormalTok{, beta[j] }\SpecialCharTok{==} \FloatTok{0.05}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-21-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ results.smallB.opt,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ specificity)) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(alpha}\SpecialCharTok{\textasciitilde{}}\NormalTok{model) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ cbpg[}\DecValTok{8}\NormalTok{], }\AttributeTok{color =}\NormalTok{ cbpg[}\DecValTok{6}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Frequency"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Specificity"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\FunctionTok{bquote}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Distribution(s) of Specificity for "}\NormalTok{, beta[j] }\SpecialCharTok{==} \FloatTok{0.05}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-21-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ results.smallB.opt,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ ppv)) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(alpha}\SpecialCharTok{\textasciitilde{}}\NormalTok{model) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ cbpg[}\DecValTok{8}\NormalTok{], }\AttributeTok{color =}\NormalTok{ cbpg[}\DecValTok{6}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Frequency"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"PPV"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\FunctionTok{bquote}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Distribution(s) of PPV for "}\NormalTok{, beta[j] }\SpecialCharTok{==} \FloatTok{0.05}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 125 rows containing non-finite values (stat_bin).
+\end{verbatim}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-21-6.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ results.smallB.opt,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ npv)) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(alpha}\SpecialCharTok{\textasciitilde{}}\NormalTok{model) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ cbpg[}\DecValTok{8}\NormalTok{], }\AttributeTok{color =}\NormalTok{ cbpg[}\DecValTok{6}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Frequency"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"NPV"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\FunctionTok{bquote}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Distribution(s) of NPV for "}\NormalTok{, beta[j] }\SpecialCharTok{==} \FloatTok{0.05}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-21-7.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ results.smallB.opt,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ mcc)) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(alpha}\SpecialCharTok{\textasciitilde{}}\NormalTok{model) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ cbpg[}\DecValTok{8}\NormalTok{], }\AttributeTok{color =}\NormalTok{ cbpg[}\DecValTok{6}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Frequency"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"MCC"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\FunctionTok{bquote}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Distribution(s) of MCC for "}\NormalTok{, beta[j] }\SpecialCharTok{==} \FloatTok{0.05}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 125 rows containing non-finite values (stat_bin).
+\end{verbatim}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-21-8.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ results.smallB.opt,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ f1)) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(alpha}\SpecialCharTok{\textasciitilde{}}\NormalTok{model) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ cbpg[}\DecValTok{8}\NormalTok{], }\AttributeTok{color =}\NormalTok{ cbpg[}\DecValTok{6}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"Frequency"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{name =} \StringTok{"F1"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\FunctionTok{bquote}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Distribution(s) of F1 for "}\NormalTok{, beta[j] }\SpecialCharTok{==} \FloatTok{0.05}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{), }
+        \AttributeTok{text =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{14}\NormalTok{),}
+        \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{simulation_details_files/figure-latex/unnamed-chunk-21-9.pdf}
+
+\end{document}
